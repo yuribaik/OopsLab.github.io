@@ -2,7 +2,7 @@
 
 /* Team Hero */
 .team-hero {
-  padding: 120px 0 80px;
+  padding: 200px 0 132px;
   background-color: var(--white);
   overflow: hidden;
 }
@@ -10,16 +10,15 @@
 .team-hero-container {
   display: flex;
   align-items: center;
-  justify-content: center;
   position: relative;
   min-height: 400px;
 }
 
 .team-title-group {
+  display: flex;
+  align-items: center;
   position: relative;
   z-index: 2;
-  margin-right: -100px; /* Overlap with image */
-  margin-top: 50px;
 }
 
 .team-huge-title {
@@ -29,7 +28,7 @@
   line-height: 1;
   text-shadow: 6px 6px 0px var(--bg-dark);
   transform: rotate(-2deg);
-  margin-bottom: -20px;
+  margin-right: 25px;
 }
 
 .team-subtitle-box {
@@ -38,7 +37,7 @@
   box-shadow: 8px 8px 0px var(--bg-dark);
   padding: 28px;
   transform: rotate(1deg);
-  margin-left: 50px;
+  white-space: nowrap;
 }
 
 .team-subtitle-box h2 {
@@ -49,7 +48,8 @@
 }
 
 .team-graphic-container {
-  position: relative;
+  position: absolute;
+  right: 0;
   z-index: 1;
   transform: rotate(6deg);
 }
@@ -98,6 +98,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 96px;
+  align-items: start;
 }
 
 .profile-card {
@@ -118,12 +119,12 @@
 
 .profile-1 {
   /* Offset card 1 */
-  margin-bottom: 48px;
+  margin-bottom: 96px;
 }
 
 .profile-2 {
   /* Offset card 2 */
-  margin-top: 48px;
+  margin-top: 96px;
 }
 
 .profile-image-container {
@@ -196,10 +197,11 @@
 
 .goal-title {
   font-size: 128px;
+  line-height: 1;
   letter-spacing: -6.4px;
   color: var(--bg-dark);
   border-bottom: 8px solid var(--bg-dark);
-  padding-bottom: 20px;
+  padding-bottom: 40px;
   margin-bottom: 80px;
 }
 
@@ -207,6 +209,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+  align-items: start;
 }
 
 .goal-card {
@@ -217,9 +220,12 @@
   display: flex;
   flex-direction: column;
   box-shadow: 8px 8px 0px var(--bg-dark);
-  margin-top: 24px; /* Space for the number overlap */
   transition: transform 0.3s ease;
 }
+
+.goal-card:nth-child(1) { margin-top: 24px; }
+.goal-card:nth-child(2) { margin-top: 72px; }
+.goal-card:nth-child(3) { margin-top: 120px; }
 
 .goal-card:hover {
   transform: translateY(-5px);
@@ -287,13 +293,16 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .team-hero-container { flex-direction: column; text-align: center; }
-  .team-title-group { margin-right: 0; margin-bottom: 40px; margin-top: 0; }
-  .team-subtitle-box { margin-left: 0; }
+  .team-hero-container { flex-direction: column; text-align: center; padding-top: 60px; }
+  .team-title-group { flex-direction: column; gap: 20px; margin: 0 0 40px 0; }
+  .team-huge-title { margin-right: 0; }
+  .team-subtitle-box { margin-left: 0; white-space: normal; }
+  .team-graphic-container { position: relative; right: auto; margin-left: 0; }
   .profiles-grid { grid-template-columns: 1fr; gap: 48px; }
   .profile-1, .profile-2 { margin: 0; }
-  .goal-title { font-size: 80px; }
+  .goal-title { font-size: 80px; padding-bottom: 20px; }
   .goal-grid { grid-template-columns: 1fr; gap: 64px; }
+  .goal-card:nth-child(1), .goal-card:nth-child(2), .goal-card:nth-child(3) { margin-top: 24px; }
 }
 
 @media (max-width: 768px) {
