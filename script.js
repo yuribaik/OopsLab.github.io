@@ -21,7 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     '.problem-card',
     '.features-container h2',
     '.feature-card',
-    '.step-card'
+    '.step-card',
+    '.profile-card',
+    '.goal-card'
   ];
 
   // We can dynamically add CSS rules for the animations if they aren't in style.css
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     elements.forEach((el, index) => {
       el.classList.add('animate-up');
       // Add slight delay for grid items
-      if (el.classList.contains('problem-card') || el.classList.contains('feature-card') || el.classList.contains('step-card')) {
+      if (el.classList.contains('problem-card') || el.classList.contains('feature-card') || el.classList.contains('step-card') || el.classList.contains('profile-card') || el.classList.contains('goal-card')) {
         el.style.transitionDelay = `${index * 0.1}s`;
       }
       observer.observe(el);
