@@ -88,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-links a.active {
   color: var(--primary);
-  font-weight: 700;
+  text-shadow: 0.5px 0 0 var(--primary), -0.5px 0 0 var(--primary); /* prevents layout shift from bolding */
   border-bottom: 2px solid var(--primary);
   padding-bottom: 6px;
 }
