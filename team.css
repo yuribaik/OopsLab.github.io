@@ -134,6 +134,7 @@
   border-radius: 12px;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .profile-img {
@@ -141,6 +142,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 8px; /* Fix corner sticking out */
 }
 
 .img-bg-1 {
