@@ -512,7 +512,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .steps-line {
   position: absolute;
-  top: 110px;
+  top: 81px;
   left: 0;
   right: 0;
   height: 2px;
@@ -550,28 +550,16 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 4px 4px 0px var(--bg-dark);
 }
 
-.step-circle-offset {
-  transform: rotate(-6deg);
-  margin-bottom: 24px;
-  margin-top: -3px;
-}
-
 .step-circle-dark {
   background-color: var(--bg-dark);
   box-shadow: 4px 4px 0px var(--primary);
 }
 
-.step-title, .step-title-offset {
+.step-title {
   font-family: var(--font-heading);
   font-size: 20px;
   letter-spacing: 2px;
   color: var(--bg-dark);
-}
-
-.step-title-offset {
-  font-size: 24px;
-  letter-spacing: 2.4px;
-  margin-top: 20px;
 }
 
 /* CTA Section */
