@@ -101,27 +101,24 @@
   text-transform: uppercase;
 }
 
-.product-hero-image-wrapper {
-  max-width: 768px;
+.product-hero-video-wrapper {
+  max-width: 1024px;
   width: 90%;
   position: relative;
   margin: 0 auto;
 }
 
-.product-hero-image-bg {
-  background: var(--black);
-  position: absolute;
-  inset: 16px -16px -16px 16px;
-  border-radius: 24px;
-}
-
-.product-hero-img {
+.product-hero-video {
   width: 100%;
   height: auto;
+  aspect-ratio: 16 / 9;
   border: 4px solid var(--black);
   border-radius: 24px;
+  box-shadow: 12px 12px 0 var(--black);
+  background: var(--black);
   position: relative;
   display: block;
+  object-fit: cover;
 }
 
 /* Problem Section */
