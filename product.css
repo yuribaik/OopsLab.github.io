@@ -13,12 +13,24 @@
 /* Product Hero Section */
 .product-hero {
   background-color: var(--orange);
-  padding: 160px 0 100px;
+  padding: 160px 0 0; /* Removed bottom padding to fix the orange square under video */
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-bottom: 2px solid var(--black);
+  overflow: hidden;
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .lifestyle-badge {
@@ -34,6 +46,13 @@
   display: inline-block;
   box-shadow: 4px 4px 0 var(--black);
   margin-bottom: 24px;
+  animation: slideUpFade 0.8s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lifestyle-badge:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 6px 6px 0 var(--black);
 }
 
 .product-title {
@@ -45,6 +64,12 @@
   margin: 0 0 20px 0;
   line-height: 1;
   text-transform: uppercase;
+  animation: slideUpFade 0.8s ease forwards;
+  transition: transform 0.3s ease;
+}
+
+.product-title:hover {
+  transform: scale(1.02);
 }
 
 .product-subtitle-box {
@@ -58,6 +83,14 @@
   transform: rotate(1deg);
   margin-bottom: 24px;
   display: inline-block;
+  opacity: 0;
+  animation: slideUpFade 0.8s ease 0.2s forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-subtitle-box:hover {
+  transform: rotate(3deg) scale(1.05);
+  box-shadow: 8px 8px 0 var(--black);
 }
 
 .product-desc {
@@ -66,6 +99,8 @@
   line-height: 1.6;
   text-align: center;
   margin-bottom: 40px;
+  opacity: 0;
+  animation: slideUpFade 0.8s ease 0.4s forwards;
 }
 
 .product-buttons {
@@ -73,6 +108,8 @@
   gap: 24px;
   justify-content: center;
   margin-bottom: 60px;
+  opacity: 0;
+  animation: slideUpFade 0.8s ease 0.6s forwards;
 }
 
 .btn-white-border {

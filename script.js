@@ -63,4 +63,25 @@ document.addEventListener('DOMContentLoaded', () => {
       track.appendChild(clone);
     });
   });
+
+  // Ensure product hero video always plays continuously
+  const heroVideo = document.querySelector('.product-hero-video');
+  if (heroVideo) {
+    const playVideo = () => {
+      heroVideo.play().catch(error => {
+        console.log("Video autoplay blocked or paused:", error);
+      });
+    };
+    
+    // Force play on load
+    playVideo();
+    
+    // If browser or something pauses it, immediately play again
+    heroVideo.addEventListener('pause', () => {
+      setTimeout(playVideo, 100);
+    });
+    
+    // Also play on click as fallback
+    heroVideo.addEventListener('click', playVideo);
+  }
 });
