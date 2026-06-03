@@ -7,84 +7,207 @@
   <meta name="description" content="We see the oops. We build the fix. Everyday life is full of tiny oops, and we solve the micro-frictions that chip away at your sanity.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
+  <div class="main-page-wrapper">
   
   <nav class="navbar">
     <div class="nav-container">
       <a href="#" class="logo">
-        <img src="assets/logo.png" alt="Oops Lab Logo">
+        <img src="assets/logo-new.png" alt="Oops Lab Logo" onerror="this.src='assets/logo.png'">
       </a>
       <div class="nav-links">
-        <a href="index.html#fixes" class="active">FIXES</a>
-        <a href="index.html#twist">OUR TWIST</a>
-        <a href="index.html#process">PROCESS</a>
-        <a href="index.html#about">ABOUT</a>
-        <a href="product.html">PRODUCT</a>
+        <a href="#fixes" class="active">FIXES</a>
+        <a href="#twist">OUR TWIST</a>
+        <a href="#process">PROCESS</a>
         <a href="team.html">TEAM</a>
+        <a href="product.html">PRODUCT</a>
       </div>
       <button class="btn btn-dark">JOIN THE LAB</button>
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="container hero-content">
-      <h1 class="hero-title">
-        <span class="line-1">WE FIND THE</span>
-        <span class="line-2">LITTLE</span>
-        <div class="oops-box-container">
-          <div class="oops-box">"OOPS!"</div>
-        </div>
-        <span class="line-3">PEOPLE FACE</span>
-        <span class="line-4">EVERY DAY.</span>
-      </h1>
-      <button class="btn btn-outline-dark explore-btn">EXPLORE FIXES</button>
+  <!-- Peeking Holes Main Section -->
+  <section class="main-peeking-section">
+    <div class="main-background-wrapper">
+      <img src="assets/main-hero-bg.png" alt="Main Peeking Holes Background" class="main-bg-img">
+      <div class="oopslab-text-overlay">
+        <div class="oopslab-huge-text"><span>O</span><span>O</span><span>P</span><span>S</span><span class="l-letter">L</span><span>A</span><span>B</span></div>
+      </div>
     </div>
   </section>
 
+  <!-- Ticker 1 (Black, White Text) -->
   <div class="ticker ticker-black">
-    <div class="ticker-track">
-      <div class="ticker-item"><span class="white">OOPS → TWIST → FIX</span></div>
-      <div class="ticker-item"><span class="orange">OOPS → TWIST → FIX</span></div>
-      <div class="ticker-item"><span class="light">OOPS → TWIST → FIX</span></div>
-      <div class="ticker-item"><span class="white">OOPS → TWIST → FIX</span></div>
-      <div class="ticker-item"><span class="orange">OOPS → TWIST → FIX</span></div>
-      <div class="ticker-item"><span class="light">OOPS → TWIST → FIX</span></div>
+    <div class="ticker-track reverse">
+      <div class="ticker-item"><span class="white">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="white">WE BUILD THE FIX</span></div>
+      <div class="ticker-item"><span class="white">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="white">WE BUILD THE FIX</span></div>
+      <div class="ticker-item"><span class="white">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="white">WE BUILD THE FIX</span></div>
+      <div class="ticker-item"><span class="white">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="white">WE BUILD THE FIX</span></div>
     </div>
   </div>
 
-  <section class="problem-section" id="fixes">
-    <div class="bg-mark mark-star">*</div>
-    <div class="bg-mark mark-exclamation">!</div>
-    <div class="container problem-container">
-      <div class="problem-header">
+  <!-- HERO Section -->
+  <section class="hero-intro-section">
+    <div class="container hero-intro-content">
+      <h1 class="hero-intro-title">
+        <span class="line-text">WE FIND THE</span>
+        <span class="line-text">LITTLE</span>
+        <div class="oops-box-container">
+          <div class="oops-box">"OOPS!"</div>
+        </div>
+        <span class="line-text">PEOPLE FACE</span>
+        <span class="line-text">EVERY DAY.</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- Problem Section (Figma Reset) -->
+  <section class="problem-notes-section" id="fixes">
+    <div class="problem-notes-header-container">
+      <div class="problem-notes-header">
         <h2>EVERYDAY LIFE IS<br>FULL OF TINY OOPS.</h2>
-        <p>We solve the micro-frictions that chip away at your sanity.</p>
       </div>
-      
-      <div class="problem-grid">
-        <div class="problem-card">
-          <h3>01.<br>DIGITAL FATIGUE</h3>
-          <p>Too many tabs. Too many pings.</p>
+    </div>
+    
+    <div class="problem-notes-board-container">
+      <div class="retro-notes-board">
+        <!-- Row 1 -->
+        <div class="notes-row notes-row-1">
+          <div class="note-card card-w-340">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">EVERY BAG HAS A BLACK HOLE.</h3>
+          </div>
+          <div class="note-icon-circle">
+            <img src="assets/icon-smile-new.svg" alt="Smile" class="note-icon-img">
+          </div>
+          <div class="note-card card-w-371">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">I JUST HAD IT TWO SECONDS AGO.</h3>
+          </div>
+          <div class="note-card card-w-343">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">NOT SERIOUS. STILL ANNOYING.</h3>
+          </div>
+          <div class="note-icon-circle">
+            <img src="assets/icon-glasses-new.svg" alt="Glasses" class="note-icon-img">
+          </div>
+          <div class="note-card card-w-395">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">TINY THINGS CAUSE WEIRDLY BIG STRESS.</h3>
+          </div>
+          <div class="note-icon-circle">
+            <img src="assets/icon-smile-new.svg" alt="Smile" class="note-icon-img">
+          </div>
+          <div class="note-card card-w-340">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">EVERY BAG HAS A BLACK HOLE.</h3>
+          </div>
+          <div class="note-icon-circle">
+            <img src="assets/icon-smile-new.svg" alt="Smile" class="note-icon-img">
+          </div>
         </div>
-        <div class="problem-card">
-          <h3>02.<br>AWKWARDNESS</h3>
-          <p>Engineering grace for clumsy<br>moments.</p>
+        
+        <!-- Row 2 -->
+        <div class="notes-row notes-row-2">
+          <div class="note-icon-circle">
+            <img src="assets/icon-eyes-new.svg" alt="Eyes" class="note-icon-img">
+          </div>
+          <div class="note-card card-w-320">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">TINY THINGS, HUGE STRESS.</h3>
+          </div>
+          <div class="note-card card-w-300">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">MY BAG EATS EVERYTHING.</h3>
+          </div>
+          <div class="note-icon-circle">
+            <img src="assets/icon-smile-new.svg" alt="Smile" class="note-icon-img">
+          </div>
+          <div class="note-card card-w-300">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">STILL SMALL. STILL ANNOYING.</h3>
+          </div>
+          <div class="note-card card-w-223">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">DAILY LIFE NEEDS CLIPS.</h3>
+          </div>
+          <div class="note-icon-circle">
+            <img src="assets/icon-eyes-new.svg" alt="Eyes" class="note-icon-img">
+          </div>
+          <div class="note-card card-w-371">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">KEYS DISAPPEAR WHEN I'M LATE.</h3>
+          </div>
+          <div class="note-icon-circle">
+            <img src="assets/icon-glasses-new.svg" alt="Glasses" class="note-icon-img">
+          </div>
         </div>
-        <div class="problem-card">
-          <h3>03.<br>DAILY BURNOUT</h3>
-          <p>Tactile resets for the 3 PM slump.</p>
-        </div>
-        <div class="problem-card">
-          <h3>04.<br>MICRO-STRESS</h3>
-          <p>Making mundane tasks feel like play.</p>
+        
+        <!-- Row 3 -->
+        <div class="notes-row notes-row-3">
+          <div class="note-card card-w-240">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">TINY CHAOS, EVERY DAY.</h3>
+          </div>
+          <div class="note-icon-circle">
+            <img src="assets/icon-glasses-new.svg" alt="Glasses" class="note-icon-img">
+          </div>
+          <div class="note-card card-w-306">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">I FOUND EVERYTHING EXCEPT IT.</h3>
+          </div>
+          <div class="note-card card-w-340">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">TOO MANY TINY PROBLEMS.</h3>
+          </div>
+          <div class="note-icon-circle">
+            <img src="assets/icon-eyes-new.svg" alt="Eyes" class="note-icon-img">
+          </div>
+          <div class="note-card card-w-340">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">CABLES LOVE GETTING TANGLED.</h3>
+          </div>
+          <div class="note-card card-w-340">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">MY ESSENTIALS KEEP ESCAPING.</h3>
+          </div>
+          <div class="note-icon-circle">
+            <img src="assets/icon-smile-new.svg" alt="Smile" class="note-icon-img">
+          </div>
+          <div class="note-card card-w-340">
+            <span class="note-tag">Oops Note★</span>
+            <h3 class="note-heading">MY ESSENTIALS KEEP ESCAPING.</h3>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Solution Equation Section -->
+  <section class="solution-equation-section" id="twist">
+    <div class="container equation-container">
+      <span class="equation-text text-light">OOPS</span>
+      <div class="equation-arrow-container">
+        <img src="assets/arrow-right.svg" alt="Arrow" class="equation-arrow-img">
+      </div>
+      <div class="equation-twist-box-container">
+        <div class="equation-twist-box">TWIST</div>
+      </div>
+      <div class="equation-arrow-container">
+        <img src="assets/arrow-right.svg" alt="Arrow" class="equation-arrow-img">
+      </div>
+      <span class="equation-text text-light">FIX</span>
+    </div>
+  </section>
+
+  <!-- Ticker 2 (Orange Background, Alternating Text Colors) -->
   <div class="ticker ticker-orange">
     <div class="ticker-track reverse">
       <div class="ticker-item"><span class="dark">WE FIND THE OOPS</span></div>
@@ -98,124 +221,167 @@
     </div>
   </div>
 
-  <section class="solution-section" id="twist">
-    <div class="bg-huge-text">OOPS</div>
-    <div class="container solution-container">
-      <img src="assets/arrow.svg" alt="Arrow" class="arrow arrow-1">
-      <div class="twist-box-container">
-        <div class="twist-box">TWIST</div>
-      </div>
-      <img src="assets/arrow.svg" alt="Arrow" class="arrow arrow-2">
-      <div class="fix-text">FIX</div>
-    </div>
-  </section>
-
-  <section class="features-section" id="features">
-    <div class="bg-mark mark-question">?</div>
-    <div class="container features-container">
-      <h2>WHAT WE BUILD</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <h4>OOPS FINDING</h4>
-          <p>Discovering hidden everyday problems.</p>
+  <!-- Features Section (Fireplace BG) -->
+  <section class="features-fireplace-section">
+    <div class="features-bg-overlay"></div>
+    <div class="container container-wide features-fireplace-container">
+      <h2 class="features-fireplace-title animate-bounce-up">WHAT WE BUILD</h2>
+      
+      <div class="features-fireplace-grid">
+        <div class="feature-fireplace-card">
+          <h4 class="feature-title">OOPS FINDING</h4>
+          <p class="feature-desc">Discovering hidden everyday problems.</p>
         </div>
-        <div class="feature-card">
-          <h4>FUNNY PRODUCT CONCEPTS</h4>
-          <p>Designing with wit and empathy.</p>
+        <div class="feature-fireplace-card">
+          <h4 class="feature-title">FUNNY CONCEPTS</h4>
+          <p class="feature-desc">Designing with wit and empathy.</p>
         </div>
-        <div class="feature-card">
-          <h4>DAILY FIX KITS</h4>
-          <p>Practical solutions for specific moments.</p>
+        <div class="feature-fireplace-card">
+          <h4 class="feature-title">DAILY FIX KITS</h4>
+          <p class="feature-desc">Tactile resets for the 3 PM slump.</p>
         </div>
-        <div class="feature-card">
-          <h4>BRANDABLE GOODS</h4>
-          <p>Quirky merch that speaks your mind.</p>
+        <div class="feature-fireplace-card">
+          <h4 class="feature-title">BRANDABLE GOODS</h4>
+          <p class="feature-desc">Making mundane tasks feel like play.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="ticker ticker-small-black">
-    <div class="ticker-track fast">
-      <div class="ticker-item"><span class="orange">LAB IN PROGRESS</span></div>
-      <div class="ticker-item"><span class="light">LAB IN PROGRESS</span></div>
-      <div class="ticker-item"><span class="orange">LAB IN PROGRESS</span></div>
-      <div class="ticker-item"><span class="light">LAB IN PROGRESS</span></div>
-      <div class="ticker-item"><span class="orange">LAB IN PROGRESS</span></div>
-      <div class="ticker-item"><span class="light">LAB IN PROGRESS</span></div>
-      <div class="ticker-item"><span class="orange">LAB IN PROGRESS</span></div>
-      <div class="ticker-item"><span class="light">LAB IN PROGRESS</span></div>
-      <div class="ticker-item"><span class="orange">LAB IN PROGRESS</span></div>
-      <div class="ticker-item"><span class="light">LAB IN PROGRESS</span></div>
-      <div class="ticker-item"><span class="orange">LAB IN PROGRESS</span></div>
-      <div class="ticker-item"><span class="light">LAB IN PROGRESS</span></div>
+  <!-- How It Works Section (5 steps) -->
+  <section class="how-works-retro-section" id="process">
+    <div class="container container-wide how-works-retro-container">
+      <div class="how-works-header">
+        <h2 class="how-works-title">HOW IT WORKS</h2>
+        <p class="how-works-subtitle">
+          From spotting small daily problems to turning them into playful products, Oops Lab follows a simple process: observe, define, twist, prototype, and launch.
+        </p>
+      </div>
+      
+      <div class="how-works-steps-grid">
+        <!-- Step 1 -->
+        <div class="how-step-card">
+          <div class="how-step-circle">
+            <span class="how-step-num">1</span>
+          </div>
+          <h3 class="how-step-name">OBSERVE</h3>
+        </div>
+        <!-- Step 2 -->
+        <div class="how-step-card">
+          <div class="how-step-circle">
+            <span class="how-step-num">2</span>
+          </div>
+          <h3 class="how-step-name">DEFINE</h3>
+        </div>
+        <!-- Step 3 (Active TWIST style) -->
+        <div class="how-step-card">
+          <div class="how-step-circle circle-active">
+            <span class="how-step-num num-active">3</span>
+          </div>
+          <h3 class="how-step-name">TWIST</h3>
+        </div>
+        <!-- Step 4 -->
+        <div class="how-step-card">
+          <div class="how-step-circle">
+            <span class="how-step-num">4</span>
+          </div>
+          <h3 class="how-step-name">PROTOTYPE</h3>
+        </div>
+        <!-- Step 5 -->
+        <div class="how-step-card">
+          <div class="how-step-circle">
+            <span class="how-step-num">5</span>
+          </div>
+          <h3 class="how-step-name">LAUNCH</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision / Lab Note Section (Girl BG) -->
+  <section class="vision-lab-section">
+    <div class="container container-wide vision-lab-container">
+      <div class="vision-lab-card">
+        <div class="vision-card-bg">
+          <img src="assets/vision-bg.png" alt="Lab Note Background" class="vision-bg-img">
+          <div class="vision-bg-gradient"></div>
+        </div>
+        <div class="vision-lab-content">
+          <blockquote class="vision-quote">
+            Small inconveniences repeated<br>
+            every day are worth solving. Oops<br>
+            Lab turns everyday “Oops” moments<br>
+            into playful, practical products.
+          </blockquote>
+          <span class="vision-author">★ LAB NOTE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ticker 3 (Orange Background, Alternating Text Colors) -->
+  <div class="ticker ticker-orange">
+    <div class="ticker-track reverse">
+      <div class="ticker-item"><span class="dark">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="light">WE BUILD THE FIX</span></div>
+      <div class="ticker-item"><span class="dark">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="light">WE BUILD THE FIX</span></div>
+      <div class="ticker-item"><span class="dark">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="light">WE BUILD THE FIX</span></div>
+      <div class="ticker-item"><span class="dark">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="light">WE BUILD THE FIX</span></div>
     </div>
   </div>
 
-  <section class="how-it-works-section" id="process">
-    <div class="container">
-      <h2 class="text-center">HOW IT WORKS</h2>
-      <div class="steps-container">
-        <div class="steps-line"></div>
-        <div class="step-card">
-          <div class="step-circle">1</div>
-          <div class="step-title">OBSERVE</div>
-        </div>
-        <div class="step-card">
-          <div class="step-circle">2</div>
-          <div class="step-title">DEFINE</div>
-        </div>
-        <div class="step-card">
-          <div class="step-circle step-circle-dark">3</div>
-          <div class="step-title">TWIST</div>
-        </div>
-        <div class="step-card">
-          <div class="step-circle">4</div>
-          <div class="step-title">PROTOTYPE</div>
-        </div>
-        <div class="step-card">
-          <div class="step-circle">5</div>
-          <div class="step-title">LAUNCH</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section" id="about">
-    <div class="bg-mark mark-question-light">?</div>
-    <div class="bg-mark mark-exclamation-light">!</div>
-    <div class="bg-mark mark-star-light">*</div>
-    
-    <div class="container cta-container">
-      <h2 class="cta-title">
-        <span class="light-text">GOT AN OOPS?</span><br>
-        <span class="dark-text">LET'S FIX IT.</span>
+  <!-- CTA Section -->
+  <section class="cta-floating-section">
+    <div class="container cta-floating-container">
+      <h2 class="cta-floating-title">
+        GOT AN OOPS?<br>LET'S FIX IT.
       </h2>
-      <div class="cta-buttons">
-        <button class="btn btn-dark-offset">SHARE YOUR OOPS</button>
-        <button class="btn btn-outline-light">CONTACT US</button>
+      <div class="cta-floating-buttons">
+        <button class="btn btn-outline-light-offset">SHARE YOUR OOPS</button>
+        <button class="btn btn-dark-offset-light">CONTACT US</button>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container footer-container">
-      <div class="footer-brand">
-        <h2>OOPS LAB</h2>
-        <p>We see the oops. We build the fix.</p>
-      </div>
-      <div class="footer-links">
+  <!-- Footer Section -->
+  <footer class="footer-retro">
+    <div class="container footer-retro-container">
+      <div class="footer-retro-links">
         <a href="#">PRIVACY</a>
         <a href="#">TERMS</a>
         <a href="#">PRESS</a>
-        <a href="#">HELLO@OOPSLAB.COM</a>
+        <a href="mailto:HELLO@OOPSLAB.COM">HELLO@OOPSLAB.COM</a>
         <a href="#">INSTAGRAM</a>
       </div>
-      <div class="footer-copyright">
-        © 2024 OOPS LAB.
+      <div class="footer-retro-copyright">
+        © 2026 OOPS LAB.
       </div>
     </div>
+    
+    <!-- Huge bottom logo -->
+    <div class="footer-huge-logo-wrapper">
+      <div class="footer-huge-logo animate-bounce-up"><span>OOPS</span><span class="l-letter">L</span><span>AB</span></div>
+    </div>
   </footer>
+
+  <!-- Ticker 4 (Black, White Text) -->
+  <div class="ticker ticker-black">
+    <div class="ticker-track reverse">
+      <div class="ticker-item"><span class="white">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="white">WE BUILD THE FIX</span></div>
+      <div class="ticker-item"><span class="white">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="white">WE BUILD THE FIX</span></div>
+      <div class="ticker-item"><span class="white">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="white">WE BUILD THE FIX</span></div>
+      <div class="ticker-item"><span class="white">WE FIND THE OOPS</span></div>
+      <div class="ticker-item"><span class="white">WE BUILD THE FIX</span></div>
+    </div>
+  </div>
+  
+  </div> <!-- .main-page-wrapper -->
 
   <script src="script.js"></script>
 </body>
