@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   if (bgImg || textOverlay || visionBg) {
+    updateParallax();
     window.addEventListener('scroll', () => {
       if (!ticking) {
         window.requestAnimationFrame(updateParallax);
