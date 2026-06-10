@@ -1,8 +1,9 @@
-//* ==========================================================================
-Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)==========================================================================*/
+/* ==========================================================================
+   Oops Lab - Team Page Specific Styles (Revamped High Fidelity Design)
+   ========================================================================== */
 
-/* Page Background Overrides */
-.team-page {
+/* Page Background & Scroll Reset */
+body {
   background-color: var(--bg-light) !important;
   color: var(--text-dark);
   font-family: var(--font-body);
@@ -20,13 +21,6 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
 
 .shadow-box-sm {
   box-shadow: 6px 6px 0px var(--bg-dark) !important;
-}
-
-/* Animations */
-.animate-up {
-  opacity: 1;
-  transform: translateY(0);
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
 }
 
 /* --------------------------------------------------------------------------
@@ -52,47 +46,44 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   aspect-ratio: 1920 / 989;
   min-height: 480px;
   max-height: 989px;
-  background-color: var(--bg-light);
+  background-color: var(--primary);
   overflow: hidden;
 }
 
-.hero-bg-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+.hero-container {
+  position: relative;
   width: 100%;
   height: 100%;
 }
 
-.hero-bg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Watermark text sandwiched in the middle */
-.hero-watermark {
+.hero-text-layer {
   position: absolute;
   top: 51%;
   left: 5%;
   transform: translateY(-50%);
   z-index: 2;
   font-family: var(--font-heading);
-  font-size: clamp(80px, 19vw, 388px);
   font-weight: 900;
   color: var(--bg-light);
-  text-shadow: 7.67px 7.67px 0px var(--bg-dark);
   letter-spacing: -9.23px;
   line-height: 0.85;
   text-transform: uppercase;
   pointer-events: none;
   user-select: none;
   width: 90%;
-  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
 }
 
-.watermark-line.line-2 {
+.hero-giant-text {
+  display: block;
+  font-size: clamp(80px, 19vw, 388px);
+  white-space: nowrap;
+  -webkit-text-stroke: 4px var(--bg-dark);
+  text-shadow: 8px 8px 0px var(--bg-dark);
+}
+
+.hero-giant-text-indent {
   padding-left: 14vw;
 }
 
@@ -103,10 +94,9 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   width: 100%;
   height: 100%;
   pointer-events: none;
-  /* Let clicks pass through if needed */
 }
 
-.hero-fg-img {
+.hero-fg-layer img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -114,11 +104,15 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
 }
 
 /* --------------------------------------------------------------------------
-   Tickers
+   Tickers Custom Overrides
    -------------------------------------------------------------------------- */
-.border-y {
-  border-top: 3.57px solid var(--bg-dark) !important;
-  border-bottom: 3.57px solid var(--bg-dark) !important;
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  border-top: 3.57px solid var(--bg-dark);
+  border-bottom: 3.57px solid var(--bg-dark);
 }
 
 .ticker-orange {
@@ -126,25 +120,9 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   height: 70px;
 }
 
-.ticker-orange span {
-  font-size: 30px !important;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  letter-spacing: -0.4px;
-  padding: 0 14px;
-}
-
 .ticker-black {
   background-color: var(--bg-dark) !important;
   height: 70px;
-}
-
-.ticker-black span {
-  font-size: 30px !important;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  letter-spacing: -0.4px;
-  padding: 0 14px;
 }
 
 .ticker-track {
@@ -159,6 +137,27 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   animation-direction: reverse;
 }
 
+.ticker-item span {
+  font-family: var(--font-heading);
+  font-size: 30px !important;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  padding: 0 14px;
+  text-transform: uppercase;
+}
+
+.ticker-item span.dark {
+  color: var(--bg-dark) !important;
+}
+
+.ticker-item span.light {
+  color: var(--bg-light) !important;
+}
+
+.ticker-item span.white {
+  color: var(--bg-light) !important;
+}
+
 @keyframes ticker-animation {
   0% {
     transform: translateX(0);
@@ -170,99 +169,130 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
 }
 
 /* --------------------------------------------------------------------------
-   Intro Section ("WE NEVER IGNORE THE OOPS")
+   Objectives Section ("WE NEVER IGNORE THE OOPS.")
    -------------------------------------------------------------------------- */
-.team-intro {
+.team-objectives {
   position: relative;
   padding: 120px 0;
   background-color: var(--bg-light);
   overflow: hidden;
 }
 
-.intro-container {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.intro-left {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.section-title {
+.objectives-title {
+  font-family: var(--font-heading);
   font-size: clamp(48px, 6.2vw, 110px);
   line-height: 1.0;
   letter-spacing: -2px;
   color: var(--bg-dark);
   font-weight: 800;
   text-transform: uppercase;
+  margin-bottom: 80px;
+  padding: 0 32px;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
-.intro-image-wrapper {
+.objectives-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.objectives-image-wrapper {
   border-radius: 21.4px;
+  border: 3.57px solid var(--bg-dark);
+  box-shadow: 14.29px 14.29px 0px var(--bg-dark);
   overflow: hidden;
   background-color: var(--white);
   height: 629px;
   width: 100%;
 }
 
-.intro-img {
+.objectives-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.intro-right {
+.objectives-cards {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding-top: 60px;
-}
-
-/* Note Cards with badge icon overlays */
-.note-card-wrapper {
-  position: relative;
-  width: 100%;
-  transition: transform 0.3s ease;
-}
-
-.note-card-wrapper:hover {
-  transform: scale(1.03) !important;
-}
-
-.card-rotate-1 {
-  transform: rotate(2.77deg);
-}
-
-.card-rotate-2 {
-  transform: rotate(-1.48deg);
-}
-
-.card-rotate-3 {
-  transform: rotate(4.54deg);
 }
 
 .oops-note-card {
   background-color: var(--white);
+  border: 3.57px solid var(--bg-dark);
+  box-shadow: 14.29px 14.29px 0px var(--bg-dark);
   border-radius: 21.43px;
   padding: 30.3px 39.3px 39.3px;
   display: flex;
   flex-direction: column;
   gap: 8.9px;
   width: 100%;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.note-header {
+.oops-note-card:hover {
+  transform: scale(1.03) translate(-3px, -3px) !important;
+  box-shadow: 18px 18px 0px var(--bg-dark) !important;
+}
+
+.card-tilt-1 {
+  transform: rotate(2.77deg);
+}
+
+.card-tilt-2 {
+  transform: rotate(-1.48deg);
+}
+
+.card-tilt-3 {
+  transform: rotate(4.54deg);
+}
+
+.oops-note-card::after {
+  content: "";
+  position: absolute;
+  width: 93px;
+  height: 93px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.card-tilt-1::after {
+  top: -30px;
+  right: -30px;
+  background: url('assets/note-icon-1.svg') no-repeat center/contain;
+}
+
+.card-tilt-2::after {
+  top: -30px;
+  left: -30px;
+  background: url('assets/note-icon-2.svg') no-repeat center/contain;
+}
+
+.card-tilt-3::after {
+  top: -30px;
+  right: -30px;
+  background: url('assets/note-icon-3.svg') no-repeat center/contain;
+}
+
+.note-tag {
   font-family: var(--font-heading);
   font-size: 28.58px;
   font-weight: 600;
   color: var(--bg-dark);
 }
 
-.note-text {
+.note-heading {
   font-family: var(--font-heading);
   font-size: clamp(22px, 2.3vw, 37.5px);
   font-weight: 800;
@@ -271,246 +301,269 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   line-height: 1.2;
 }
 
-.note-badge {
-  position: absolute;
-  width: 93px;
-  height: 93px;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.card-rotate-1 .note-badge {
-  top: -30px;
-  right: -30px;
-}
-
-.card-rotate-2 .note-badge {
-  top: -30px;
-  left: -30px;
-}
-
-.card-rotate-3 .note-badge {
-  top: -30px;
-  right: -30px;
-}
-
-.note-badge img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
 /* --------------------------------------------------------------------------
-   Goal Section ("WE TAKE SMALL PROBLEMS SERIOUSLY.")
+   Problems Section ("WE TAKE SMALL PROBLEMS SERIOUSLY.")
    -------------------------------------------------------------------------- */
-.team-goal-section {
+.team-problems {
   position: relative;
   padding: 120px 0 0;
   background-color: var(--bg-light);
+  border-top: 3.57px solid var(--bg-dark);
   border-bottom: 3.57px solid var(--bg-dark);
   overflow: hidden;
   height: 1400px;
-}
-
-.goal-bg-white {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1295px;
-  background-color: var(--white);
-  z-index: 1;
-  border-top: 3.57px solid var(--bg-dark);
-}
-
-.goal-container {
-  position: relative;
-  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  justify-content: flex-start;
 }
 
-.goal-title-huge {
-  font-size: clamp(60px, 12.5vw, 233.37px);
-  line-height: 1.0;
-  letter-spacing: -4.24px;
-  color: var(--bg-dark);
-  font-weight: 800;
-  text-transform: uppercase;
+.problems-text-layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   margin-top: 150px;
   pointer-events: none;
   user-select: none;
+  z-index: 1;
 }
 
-.goal-graphic-wrapper {
+.problems-giant-line {
+  font-family: var(--font-heading);
+  font-size: clamp(60px, 12.5vw, 233.37px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -4.24px;
+  color: var(--bg-dark);
+  text-transform: uppercase;
+  display: block;
+}
+
+.problems-image-layer {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   max-width: 1216px;
-  z-index: 3;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.goal-img {
+.problems-img {
   width: 100%;
   height: auto;
   display: block;
 }
 
 /* --------------------------------------------------------------------------
-   Team Profiles Section
+   Introducing Section (Kim Minseo & Baik Yuri)
    -------------------------------------------------------------------------- */
-.profile-section {
-  padding: 120px 0;
+.intro-section {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  height: 1080px;
   background-color: var(--bg-light);
   border-bottom: 3.57px solid var(--bg-dark);
+  overflow: hidden;
 }
 
-.profile-container {
+.intro-flex-block {
+  position: absolute;
+  top: 120px;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 30px;
 }
 
-.profile-header-group {
-  width: 100%;
+.intro-flex-right {
+  right: 80px;
+  align-items: flex-end;
 }
 
-.profile-section-title {
-  font-size: clamp(40px, 6vw, 110px);
+.intro-flex-left {
+  left: 80px;
+  align-items: flex-start;
+}
+
+.intro-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 4.5vw, 80px);
+  font-weight: 900;
   line-height: 1.0;
   letter-spacing: -2px;
-  font-weight: 800;
-  color: var(--bg-dark);
-}
-
-.profile-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.profile-reversed {
-  grid-template-columns: 0.85fr 1.15fr;
-}
-
-/* Profile details column containing blob and values card */
-.profile-details-column {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.profile-name-blob {
-  max-width: 100%;
-  filter: drop-shadow(14px 14px 0px var(--bg-dark));
-}
-
-.profile-name-blob img {
-  height: auto;
-  max-height: 250px;
-  object-fit: contain;
-}
-
-.name-blob-right {
-  align-self: flex-end;
-}
-
-.profile-quote-group {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.values-subtitle {
-  font-size: 28.45px;
-  font-weight: 800;
   color: var(--bg-dark);
   text-transform: uppercase;
 }
 
-.profile-quote-card {
-  background-color: var(--white);
-  border-radius: 21.44px;
-  padding: 40px;
-  height: 280px;
+.intro-flex-right .intro-heading {
+  text-align: right;
+}
+
+.intro-flex-left .intro-heading {
+  text-align: left;
+}
+
+.intro-row {
   display: flex;
-  align-items: center;
-  transition: transform 0.3s ease;
+  align-items: flex-end;
+  gap: 24px;
+  flex-direction: row-reverse;
 }
 
-.profile-quote-card:hover {
-  transform: translate(-3px, -3px);
-}
-
-.quote-text {
-  font-size: 24px;
-  line-height: 1.4;
-  font-weight: 400;
-  color: var(--bg-dark);
-  font-family: var(--font-body);
-}
-
-/* Profile media column containing photo and badge */
-.profile-media-column {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.profile-photo-card {
+.portrait-card {
+  width: 380px;
+  aspect-ratio: 900 / 1160;
   border-radius: 18.28px;
+  border: 3.57px solid var(--bg-dark);
+  box-shadow: 14.29px 14.29px 0px var(--bg-dark);
   overflow: hidden;
   background-color: #d9d9d9;
-  width: 100%;
-  aspect-ratio: 900 / 1160;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.profile-photo-card:hover {
+.portrait-card:hover {
   transform: translate(-3px, -3px);
+  box-shadow: 18px 18px 0px var(--bg-dark);
 }
 
-.photo-img {
+.portrait-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.profile-badge-pill {
-  padding: 15px 30px;
+.role-badge {
+  background-color: #ffd166;
+  color: var(--bg-dark);
+  border: 3.57px solid var(--bg-dark);
+  box-shadow: 6px 6px 0px var(--bg-dark);
   border-radius: 21.67px;
+  padding: 15px 30px;
   font-family: var(--font-heading);
-  font-size: 28.45px;
+  font-size: clamp(18px, 1.8vw, 28px);
+  font-weight: 800;
+  text-transform: uppercase;
+  white-space: nowrap;
+  width: fit-content;
+  text-align: center;
+}
+
+.intro-name-sticker {
+  position: absolute;
+  z-index: 10;
+  width: 320px;
+  filter: drop-shadow(14.29px 14.29px 0px var(--bg-dark));
+  pointer-events: none;
+}
+
+.minseo-sticker {
+  top: 400px;
+  right: 300px;
+}
+
+.yuri-sticker {
+  top: 400px;
+  left: 300px;
+}
+
+.intro-name-sticker img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.intro-desc-card {
+  position: absolute;
+  background-color: var(--white);
+  border: 3.57px solid var(--bg-dark);
+  box-shadow: 14.29px 14.29px 0px var(--bg-dark);
+  border-radius: 21.44px;
+  padding: 40px;
+  width: 550px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.intro-desc-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 18px 18px 0px var(--bg-dark);
+}
+
+.minseo-desc {
+  bottom: 120px;
+  left: 80px;
+}
+
+.yuri-desc {
+  bottom: 120px;
+  right: 80px;
+}
+
+.desc-text {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--bg-dark);
+  font-family: var(--font-body);
+}
+
+.intro-desc-card::before {
+  content: "My values";
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 28.58px;
   font-weight: 800;
   color: var(--bg-dark);
-  background-color: #ffd166;
-  /* Bright yellow */
-  display: inline-block;
-  margin-top: 30px;
-  width: 435px;
-  max-width: 100%;
-  text-align: center;
+  text-transform: uppercase;
+  position: absolute;
+  top: -60px;
+  left: 0;
+}
+
+/* Inline SVG Mouse wheel on card border dynamically */
+.intro-desc-card::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 44px;
+  background-color: var(--white);
+  border: 3px solid var(--bg-dark);
+  border-radius: 15px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='44' viewBox='0 0 30 44' fill='none'><rect x='5' y='5' width='20' height='34' rx='10' stroke='%23222222' stroke-width='3'/><path d='M15 10V18' stroke='%23222222' stroke-width='3'/><path d='M15 30V34' stroke='%23222222' stroke-width='2'/><path d='M11 32L15 36L19 32' stroke='%23222222' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 10;
+}
+
+.minseo-desc::after {
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.yuri-desc::after {
+  left: -17px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* --------------------------------------------------------------------------
    CTA Section ("GOT AN OOPS? LET'S FIX IT.")
    -------------------------------------------------------------------------- */
-.team-cta {
+.cta-floating-section {
   background-color: var(--primary);
   padding: 206px 32px;
   text-align: center;
+  border-top: 3.57px solid var(--bg-dark);
   border-bottom: 3.57px solid var(--bg-dark);
 }
 
-.cta-inner {
+.cta-floating-container {
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
@@ -519,7 +572,8 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   gap: 49px;
 }
 
-.cta-title-huge {
+.cta-floating-title {
+  font-family: var(--font-heading);
   font-size: clamp(60px, 9.5vw, 157px);
   line-height: 0.95;
   letter-spacing: -2.98px;
@@ -528,14 +582,14 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   text-transform: uppercase;
 }
 
-.cta-buttons-group {
+.cta-floating-buttons {
   display: flex;
   gap: 35.8px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.btn-peach-offset {
+.btn-outline-light-offset {
   background-color: var(--bg-light) !important;
   color: var(--bg-dark) !important;
   border: 2.98px solid var(--bg-dark) !important;
@@ -544,19 +598,19 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   border-radius: 9999px !important;
   font-family: var(--font-heading) !important;
   font-size: 27px !important;
-  font-weight: 600 !important;
+  font-weight: 800 !important;
   letter-spacing: 0.45px !important;
   text-transform: uppercase !important;
   cursor: pointer !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
-.btn-peach-offset:hover {
+.btn-outline-light-offset:hover {
   box-shadow: 12px 12px 0px var(--bg-dark) !important;
   transform: translate(-3px, -3px) !important;
 }
 
-.btn-dark-outline-offset {
+.btn-dark-offset-light {
   background-color: var(--bg-dark) !important;
   color: var(--bg-light) !important;
   border: 2.98px solid var(--bg-light) !important;
@@ -565,22 +619,22 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   border-radius: 9999px !important;
   font-family: var(--font-heading) !important;
   font-size: 27px !important;
-  font-weight: 600 !important;
+  font-weight: 800 !important;
   letter-spacing: 0.45px !important;
   text-transform: uppercase !important;
   cursor: pointer !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
-.btn-dark-outline-offset:hover {
+.btn-dark-offset-light:hover {
   box-shadow: 12px 12px 0px var(--bg-light) !important;
   transform: translate(-3px, -3px) !important;
 }
 
 /* --------------------------------------------------------------------------
-   Footer with Large Watermark
+   Footer with Large Watermark Logo
    -------------------------------------------------------------------------- */
-.team-footer {
+.footer-retro {
   position: relative;
   background-color: #1a1a1a !important;
   padding: 80px 32px 40px !important;
@@ -590,7 +644,7 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   align-items: center;
 }
 
-.footer-content {
+.footer-retro-container {
   position: relative;
   z-index: 2;
   display: flex;
@@ -605,13 +659,13 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   gap: 30px;
 }
 
-.footer-left-group {
+.footer-retro-links {
   display: flex;
   gap: 75px;
   flex-wrap: wrap;
 }
 
-.footer-left-group a {
+.footer-retro-links a {
   color: rgba(255, 236, 214, 0.7);
   text-decoration: none;
   font-size: 19px;
@@ -621,17 +675,26 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   transition: color 0.2s ease;
 }
 
-.footer-left-group a:hover {
+.footer-retro-links a:hover {
   color: var(--primary);
 }
 
-.footer-copyright-group {
+.footer-retro-copyright {
   color: rgba(255, 236, 214, 0.7);
   font-size: 19px;
   font-weight: 600;
 }
 
-.footer-watermark {
+.footer-huge-logo-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
+
+.footer-huge-logo {
   font-family: var(--font-heading);
   font-size: clamp(100px, 21vw, 405px);
   font-weight: 900;
@@ -642,12 +705,9 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
   text-transform: uppercase;
   pointer-events: none;
   user-select: none;
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: -20px;
 }
 
-.watermark-l {
+.footer-huge-logo .l-letter {
   color: var(--primary) !important;
   letter-spacing: 4.09px;
 }
@@ -656,20 +716,34 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
    Responsive Design Media Queries
    -------------------------------------------------------------------------- */
 
-/* Laptop / Desktop adjustments */
+/* Laptop adjustments */
 @media (max-width: 1200px) {
-  .intro-container {
+  .objectives-content {
     gap: 40px;
   }
 
-  .profile-grid,
-  .profile-reversed {
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
+  .intro-flex-right {
+    right: 40px;
   }
 
-  .profile-reversed {
-    grid-template-columns: 0.9fr 1.1fr;
+  .intro-flex-left {
+    left: 40px;
+  }
+
+  .minseo-desc {
+    left: 40px;
+  }
+
+  .yuri-desc {
+    right: 40px;
+  }
+
+  .minseo-sticker {
+    right: 260px;
+  }
+
+  .yuri-sticker {
+    left: 260px;
   }
 }
 
@@ -680,71 +754,128 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
     height: auto;
   }
 
-  .hero-watermark {
+  .hero-giant-text {
     font-size: 13vw;
     letter-spacing: -4px;
   }
 
-  .watermark-line.line-2 {
+  .hero-giant-text-indent {
     padding-left: 8vw;
   }
 
-  .intro-container {
+  .objectives-content {
     grid-template-columns: 1fr;
     gap: 60px;
   }
 
-  .intro-right {
-    padding-top: 0;
+  .objectives-image-wrapper {
+    height: 480px;
   }
 
-  .profile-grid,
-  .profile-reversed {
-    grid-template-columns: 1fr;
-    gap: 60px;
+  .oops-note-card {
+    transform: none !important;
   }
 
-  .profile-reversed .profile-media-column {
-    order: -1;
+  .oops-note-card::after {
+    display: none;
+    /* Hide cards badges on smaller screens */
   }
 
-  .profile-media-column {
-    order: -1;
-    align-items: center;
-  }
-
-  .profile-quote-card {
-    height: auto;
-    padding: 30px;
-  }
-
-  .profile-photo-card {
-    max-width: 600px;
-  }
-
-  .profile-name-blob {
-    text-align: center;
-  }
-
-  .name-blob-right {
-    align-self: center;
-  }
-
-  .team-goal-section {
+  .team-problems {
     height: auto;
     padding: 80px 0 0;
   }
 
-  .goal-bg-white {
-    height: 70%;
+  .problems-text-layer {
+    margin-top: 0;
   }
 
-  .goal-graphic-wrapper {
+  .problems-image-layer {
     position: relative;
     transform: none;
-    left: 0;
+    left: auto;
     margin: 40px auto 0;
     max-width: 90%;
+  }
+
+  /* Intro Sections */
+  .intro-section {
+    height: auto;
+    padding: 80px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .intro-flex-block {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .intro-flex-right .intro-heading,
+  .intro-flex-left .intro-heading {
+    text-align: center;
+  }
+
+  .intro-row {
+    flex-direction: column !important;
+    align-items: center;
+    width: 100%;
+  }
+
+  .portrait-card {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .role-badge {
+    width: 100%;
+    max-width: 380px;
+    margin-top: 20px;
+    box-shadow: 4px 4px 0px var(--bg-dark);
+  }
+
+  .intro-name-sticker {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 320px;
+    transform: translateY(-20px);
+  }
+
+  .intro-desc-card {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+  }
+
+  .intro-desc-card::before {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-bottom: 15px;
+  }
+
+  /* Center the scroll wheel badge on the top border on mobile for both cards */
+  .minseo-desc::after,
+  .yuri-desc::after {
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -754,50 +885,44 @@ Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)=======
     min-height: 280px;
   }
 
-  .hero-watermark {
+  .hero-giant-text {
     font-size: 14vw;
     letter-spacing: -3px;
   }
 
-  .watermark-line.line-2 {
+  .hero-giant-text-indent {
     padding-left: 4vw;
   }
 
-  .note-card-wrapper {
-    transform: none !important;
-  }
-
-  .note-badge {
-    display: none;
-    /* Hide badges on small screens to avoid overlaps */
-  }
-
-  .profile-badge-pill {
+  .role-badge {
     font-size: 20px;
     padding: 12px 24px;
-    width: 100%;
   }
 
-  .cta-buttons-group {
+  .desc-text {
+    font-size: 18px;
+  }
+
+  .cta-floating-buttons {
     flex-direction: column;
     width: 100%;
     align-items: center;
   }
 
-  .btn-peach-offset,
-  .btn-dark-outline-offset {
+  .btn-outline-light-offset,
+  .btn-dark-offset-light {
     width: 100%;
     max-width: 400px;
     padding: 20px 30px !important;
     font-size: 20px !important;
   }
 
-  .footer-left-group {
+  .footer-retro-links {
     justify-content: center;
     gap: 30px;
   }
 
-  .footer-content {
+  .footer-retro-container {
     flex-direction: column;
     text-align: center;
     gap: 20px;
