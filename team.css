@@ -76,11 +76,11 @@
    ══════════════════════════════════════════════ */
 .team-objectives {
   background-color: #ffecd6;
-  padding: 60px 0;
+  padding: 100px 0 80px;
 }
 
 .objectives-inner {
-  max-width: 1850px;
+  max-width: 1800px;
   margin: 0 auto;
   padding: 0 60px;
 }
@@ -88,105 +88,132 @@
 .objectives-title {
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
-  font-size: clamp(48px, 6vw, 110px);
-  line-height: 1.0;
-  color: #222;
+  font-size: clamp(40px, 5.5vw, 84px);
+  line-height: 1.05;
+  color: #222222;
   text-transform: uppercase;
   letter-spacing: -2px;
-  margin-bottom: 68px;
+  margin-bottom: 60px;
+  text-align: left;
 }
 
 .objectives-content {
   display: flex;
-  gap: 57px;
-  align-items: flex-start;
+  gap: 60px;
+  align-items: center;
 }
 
-/* Left: Desk photo */
+/* 왼쪽 사진 */
 .objectives-image-wrapper {
-  flex: 0 0 auto;
-  width: 52%;
-  border-radius: 18px;
-  overflow: hidden;
+  flex: 0 0 57%;
+  max-width: 57%;
+  align-self: stretch;
 }
 
 .objectives-img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 926 / 667;
+  height: 100%;
   object-fit: cover;
-  display: block;
   border-radius: 18px;
+  border: 3.5px solid #000;
+  box-shadow: 8px 8px 0px #000;
+  display: block;
 }
 
-/* Right: Oops Note Cards stack */
-.objectives-cards {
+/* 오른쪽 말풍선 리스트 */
+.oops-list {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 28px;
-  align-items: center;
+  gap: 48px;
 }
 
-/* Single Oops Note Card — thick black solid shadow (Figma: 14.29px 14.29px 0px black) */
-.oops-note-card {
-  background: #ffffff;
-  border: 3.57px solid #222222;
-  border-radius: 21px;
-  padding: 30px 39px 39px;
-  box-shadow: 14px 14px 0px #000000;
+.oops-item {
+  position: relative;
+  border: 3.5px solid #000;
+  box-shadow: 8px 8px 0px #000;
+  border-radius: 18px;
+  padding: 36px;
+  background-color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
   width: 100%;
-  max-width: 786px;
-  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
+  box-sizing: border-box;
 }
 
-.oops-note-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 18px 18px 0px #000000;
-}
-
-.note-tag {
+.oops-item .subtitle {
   font-family: 'Poppins', sans-serif;
+  font-size: 16px;
   font-weight: 600;
-  font-size: clamp(18px, 1.5vw, 28.5px);
-  color: #222;
-  display: block;
-  margin-bottom: 9px;
+  color: #222222;
+  margin: 0 0 6px 0;
+  text-align: left;
 }
 
-.note-heading {
+.oops-item h3 {
   font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: clamp(20px, 2vw, 37.5px);
-  color: #222;
-  text-transform: uppercase;
-  letter-spacing: -1.8px;
-  line-height: 1.2;
+  font-size: 20pt;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #222222;
+  margin: 0;
+  text-align: left;
 }
 
-/* Tilt angles matching Figma */
-.card-tilt-1 {
-  transform: rotate(2.77deg);
+/* 삐뚤빼뚤한 각도 부여 */
+.tilt-1 {
+  transform: rotate(2.5deg);
 }
 
-.card-tilt-2 {
-  transform: rotate(-1.48deg);
+.tilt-2 {
+  transform: rotate(-1.5deg);
 }
 
-.card-tilt-3 {
-  transform: rotate(4.54deg);
+.tilt-3 {
+  transform: rotate(3.5deg);
 }
 
-.card-tilt-1:hover {
-  transform: rotate(2.77deg) translate(-4px, -4px);
+/* 마우스 올렸을 때 애니메이션 방해 안 받게 각도 유지 */
+.tilt-1:hover {
+  transform: rotate(2.5deg) translate(-4px, -4px);
+  box-shadow: 12px 12px 0px #000;
 }
 
-.card-tilt-2:hover {
-  transform: rotate(-1.48deg) translate(-4px, -4px);
+.tilt-2:hover {
+  transform: rotate(-1.5deg) translate(-4px, -4px);
+  box-shadow: 12px 12px 0px #000;
 }
 
-.card-tilt-3:hover {
-  transform: rotate(4.54deg) translate(-4px, -4px);
+.tilt-3:hover {
+  transform: rotate(3.5deg) translate(-4px, -4px);
+  box-shadow: 12px 12px 0px #000;
+}
+
+/* 오렌지 배지 */
+.orange-badge {
+  width: 50px;
+  height: 50px;
+  background-color: #ff5c00;
+  color: white;
+  border: 3.5px solid #000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 4px 4px 0px #000;
+  z-index: 5;
+}
+
+.badge-top-right {
+  position: absolute;
+  top: -22px;
+  right: -22px;
+}
+
+.badge-middle-left {
+  position: absolute;
+  top: 50%;
+  left: -25px;
+  transform: translateY(-50%);
 }
 
 /* ══════════════════════════════════════════════
@@ -246,190 +273,223 @@
 }
 
 /* ══════════════════════════════════════════════
-   3. PROFILES SECTION — Kim Minseo & Baik Yuri
+   3 & 4. PROFILES SECTION — Kim Minseo & Baik Yuri (수정됨)
    ══════════════════════════════════════════════ */
-.profiles-section {
-  background-color: #ffecd6;
-  padding: 0;
+.intro-section {
+  position: relative;
+  max-width: 1800px;
+  width: calc(100% - 120px);
+  height: 950px;
+  margin: 140px auto;
 }
 
-.profile-block {
-  padding: 100px 0 80px;
-}
-
-.profile-heading {
+.intro-heading {
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
-  font-size: clamp(48px, 6vw, 110px);
-  line-height: 1.0;
-  color: #222222;
-  text-transform: uppercase;
-  margin-bottom: 59px;
+  font-size: clamp(40px, 5vw, 100px);
+  line-height: 1.05;
   letter-spacing: -2px;
+  color: #222222;
+  margin: 0;
 }
 
-/* Profile Grid — 3-column layout */
-.profile-grid {
-  display: flex;
-  gap: 20px;
-  align-items: flex-end;
+.intro-minseo .intro-heading {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
 }
 
-.minseo-grid {
-  justify-content: flex-end;
+.intro-yuri .intro-heading {
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: left;
 }
 
-.yuri-grid {
-  justify-content: flex-start;
+/* 텍스트 박스 */
+.description-box {
+  position: absolute;
+  width: 440px;
+  padding: 48px 56px;
+  background: #fff;
+  border: 3.5px solid #000;
+  border-radius: 18px;
+  box-shadow: 10px 10px 0px #000;
+  text-align: left;
 }
 
-/* Profile columns */
-.profile-col {
-  display: flex;
-  flex-direction: column;
+.intro-minseo .description-box {
+  left: 0;
+  top: 380px;
 }
 
-.profile-col-info {
-  gap: 0;
-  justify-content: flex-end;
-  max-width: 684px;
+.intro-yuri .description-box {
+  right: 0;
+  top: 380px;
 }
 
-.profile-col-info-right {
-  align-items: flex-end;
-}
-
-.profile-col-portrait {
-  flex: 0 0 auto;
-  width: 617px;
-}
-
-.profile-col-badge {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-}
-
-/* ── Name Sticker ── */
-.name-sticker-wrapper {
-  width: 601px;
-  max-width: 100%;
-  margin-bottom: -30px;
-  z-index: 3;
-  position: relative;
-}
-
-/* Figma: Minseo sticker has shadow: -36px 25px 0px 0px black */
-.minseo-block .name-sticker-wrapper {
-  box-shadow: -36px 25px 0px 0px #000000;
-}
-
-.name-sticker-right {
-  margin-left: auto;
-}
-
-/* Figma: Yuri sticker has shadow: 36px 25px 0px 0px black */
-.yuri-block .name-sticker-wrapper {
-  box-shadow: 36px 25px 0px 0px #000000;
-}
-
-.name-sticker {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-}
-
-/* ── NEO-BRUTALIST SHADOW SYSTEM (Figma-exact) ── */
-
-/* Heavy shadow — for description cards (Figma: 14.29px 14.29px 0px 0px black) */
-.neo-shadow {
-  box-shadow: 14px 14px 0px 0px #000000 !important;
-}
-
-/* Medium shadow — for portrait cards (Figma: 6px 6px 0px 0px black) */
-.neo-shadow-sm {
-  box-shadow: 6px 6px 0px 0px #000000 !important;
-}
-
-/* Thick border for role badges (Figma: border: 7px solid black) */
-.neo-border-thick {
-  border-width: 7px !important;
-  border-color: #000000 !important;
-}
-
-/* ── Description Card ── */
-.desc-card {
-  background: #ffffff;
-  border: 3.57px solid #222222;
-  border-radius: 21px;
-  padding: 48px 40px;
-  box-shadow: 14px 14px 0px 0px #000000;
-  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
-}
-
-.desc-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 18px 18px 0px 0px #000000;
-}
-
-.desc-text {
+.description-box p {
+  margin: 0;
+  font-size: clamp(15px, 1.3vw, 20px);
+  line-height: 1.55;
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(18px, 1.3vw, 24px);
-  font-weight: 400;
-  line-height: 1.4;
+  font-weight: 500;
   color: #222222;
 }
 
-/* ── Portrait Card ── */
-.portrait-card {
-  width: 100%;
-  aspect-ratio: 617 / 795;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 3.57px solid #000000;
-  box-shadow: 6px 6px 0px 0px #000000;
-  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
+/* 사진 및 겹침 요소 그룹 */
+.profile-image-group {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 180px;
+  width: 500px;
+  height: 640px;
 }
 
-.portrait-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 10px 10px 0px 0px #000000;
-}
-
-.portrait-card img {
+.profile-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border: 3.5px solid #000;
+  border-radius: 18px;
+  box-shadow: 10px 10px 0px #000;
   display: block;
 }
 
-/* ── Role Badge ── */
-.role-badge {
-  border: 7px solid #000000;
-  border-radius: 20px;
-  padding: 30px 90px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100px;
-  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* 이름 스티커 */
+.name-sticker {
+  position: absolute;
+  width: 360px;
+  z-index: 10;
 }
 
-.role-badge:hover {
-  transform: translate(-3px, -3px);
+.intro-minseo .name-sticker {
+  top: 10px;
+  left: -140px;
+  transform: rotate(-8deg);
 }
 
-.badge-yellow {
-  background-color: #FFD166;
+.intro-yuri .name-sticker {
+  top: 10px;
+  right: -140px;
+  transform: rotate(8deg);
 }
 
-.role-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(20px, 1.5vw, 28.5px);
+/* 직군 태그 */
+.role-tag {
+  position: absolute;
+  background-color: #f7d05c;
+  padding: 20px 30px;
+  border: 3.5px solid #000;
+  border-radius: 10px;
   font-weight: 800;
-  color: #000000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  box-shadow: 6px 6px 0px #000;
+  z-index: 10;
   white-space: nowrap;
+}
+
+.intro-minseo .role-tag {
+  right: -60px;
+  bottom: 40px;
+}
+
+.intro-yuri .role-tag {
+  left: -60px;
+  bottom: 40px;
+}
+
+/* ══════════════════════════════════════════════
+   반응형 (태블릿 & 모바일 호환) 추가
+   ══════════════════════════════════════════════ */
+@media (max-width: 900px) {
+
+  /* 섹션 2: 이미지와 리스트 세로 배치 */
+  .objectives-content {
+    flex-direction: column;
+  }
+
+  .intro-section {
+    position: static;
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+    margin: 80px 0;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .intro-heading {
+    position: static;
+    text-align: center !important;
+    font-size: clamp(32px, 6vw, 48px);
+    margin-bottom: 20px;
+  }
+
+  .description-box {
+    position: static;
+    width: 100%;
+    max-width: 480px;
+    padding: 30px 24px;
+    order: 3;
+  }
+
+  .profile-image-group {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    order: 2;
+  }
+
+  .profile-img {
+    height: auto;
+    aspect-ratio: 617 / 795;
+  }
+
+  .name-sticker {
+    width: 180px;
+  }
+
+  .intro-minseo .name-sticker {
+    top: -20px;
+    left: -40px;
+    transform: rotate(-8deg);
+  }
+
+  .intro-yuri .name-sticker {
+    top: -20px;
+    right: -40px;
+    transform: rotate(8deg);
+  }
+
+  .role-tag {
+    font-size: 16px;
+    padding: 10px 20px;
+    bottom: -15px;
+    top: auto;
+  }
+
+  .intro-minseo .role-tag {
+    right: -20px;
+    left: auto;
+  }
+
+  .intro-yuri .role-tag {
+    left: -20px;
+    right: auto;
+  }
 }
 
 /* ══════════════════════════════════════════════
@@ -445,15 +505,24 @@
 
   .objectives-image-wrapper {
     width: 100%;
+    max-width: 100%;
   }
 
-  .objectives-cards {
-    max-width: 100%;
+  .oops-list {
+    width: 100%;
   }
 
   .objectives-title {
     font-size: clamp(36px, 5vw, 72px);
     margin-bottom: 40px;
+  }
+
+  .oops-item {
+    padding: 28px;
+  }
+
+  .oops-item h3 {
+    font-size: clamp(20px, 3.5vw, 32px);
   }
 
   /* Profiles */
@@ -534,25 +603,15 @@
     letter-spacing: -1px;
   }
 
-  .oops-note-card {
-    padding: 20px 24px 28px;
+  .oops-item {
+    padding: 20px 24px;
     box-shadow: 8px 8px 0px #000000;
     border-radius: 14px;
   }
 
-  .note-tag {
-    font-size: 16px;
-  }
-
-  .note-heading {
+  .oops-item h3 {
     font-size: 18px;
     letter-spacing: -0.5px;
-  }
-
-  .card-tilt-1,
-  .card-tilt-2,
-  .card-tilt-3 {
-    transform: rotate(0deg);
   }
 
   .profile-heading {
