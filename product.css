@@ -29,13 +29,12 @@
 /* Product Hero Section */
 .product-hero {
   background-color: var(--orange);
-  height: clamp(600px, 85vh, 1080px);
+  height: 1080px;
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
 @keyframes slideUpFade {
@@ -103,7 +102,7 @@
 /* Product Description Intro */
 .product-intro-desc-section {
   background-color: var(--orange);
-  padding: clamp(60px, 6vw, 110px) 32px;
+  padding: 56px 32px;
   border-bottom: 2px solid var(--black);
 }
 
@@ -121,20 +120,20 @@
 
 /* Video Preview Section */
 .product-video-section {
-  background-color: var(--peach);
-  padding: clamp(60px, 7vw, 120px) 32px;
+  background-color: var(--black);
+  padding: 0;
   border-bottom: 2px solid var(--black);
 }
 
 .video-container-inner {
-  max-width: 1440px;
-  margin: 0 auto;
-  aspect-ratio: 16 / 9;
-  border: 4px solid var(--black);
-  box-shadow: 12px 12px 0px var(--black);
+  width: 100%;
+  max-width: none;
+  height: clamp(300px, 56.25vw, 720px);
+  border: none;
+  box-shadow: none;
   position: relative;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 0;
   background-color: var(--black);
 }
 
@@ -216,8 +215,12 @@
 /* Simple As Clip Section */
 .product-steps-section {
   background-color: var(--orange);
-  padding: clamp(80px, 8vw, 140px) 32px;
+  height: 1080px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-bottom: 2px solid var(--black);
+  padding: 0 32px;
 }
 
 .product-steps-container {
@@ -265,8 +268,8 @@
 }
 
 .step-item-desc {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
   font-size: clamp(15px, 1.4vw, 22px);
   color: rgba(34, 34, 34, 0.7);
   line-height: 1.4;
@@ -283,9 +286,9 @@
   width: 100%;
   max-width: 713px;
   aspect-ratio: 713 / 951;
-  border-radius: 24px;
-  border: 4px solid var(--black);
-  box-shadow: 12px 12px 0px var(--black);
+  border-radius: 20px;
+  border: none;
+  box-shadow: 10px 10px 0px var(--black);
   overflow: hidden;
   background-color: var(--white);
 }
@@ -300,7 +303,11 @@
 /* Bento Grid Section */
 .product-bento-section {
   background-color: var(--peach);
-  padding: clamp(80px, 8vw, 140px) 32px;
+  height: 1862px;
+  padding: 120px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   border-bottom: 2px solid var(--black);
 }
 
@@ -331,19 +338,19 @@
 }
 
 .bento-item {
-  border: 3px solid var(--black);
-  border-radius: 24px;
+  border: 2px solid var(--black);
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-  box-shadow: 8px 8px 0px var(--black);
+  box-shadow: 6px 6px 0px var(--black);
 }
 
 .bento-item:hover {
   transform: translate(-4px, -4px);
-  box-shadow: 12px 12px 0px var(--black);
+  box-shadow: 10px 10px 0px var(--black);
 }
 
 .bento-span-8 {
@@ -406,10 +413,11 @@
 }
 
 .bento-card-desc {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
   font-size: clamp(15px, 1.4vw, 21px);
   line-height: 1.45;
+  letter-spacing: -0.336px;
   margin: 0;
 }
 
@@ -445,6 +453,7 @@
   aspect-ratio: 80 / 100;
   object-fit: contain;
   filter: brightness(0) invert(1);
+  opacity: 0.4;
 }
 
 /* Card 3: Anti-Loss Lock */
@@ -498,7 +507,7 @@
 
 /* Pre-order Section with Badge Sticker */
 .product-preorder-section {
-  height: clamp(500px, 56.25vw, 1080px); /* 1280x720 aspect ratio */
+  height: 720px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -531,7 +540,7 @@
 .preorder-badge-border {
   border: 3.34px solid var(--black);
   background-color: var(--peach);
-  box-shadow: 10px 10px 0px var(--black);
+  box-shadow: none;
   padding: clamp(12px, 1.3vw, 17px) clamp(30px, 4.4vw, 57px);
   border-radius: 0px;
   transform: rotate(-1deg);
@@ -554,8 +563,12 @@
 /* Product CTA Section */
 .product-cta-section {
   background-color: var(--orange);
-  padding: clamp(100px, 10vw, 180px) 32px;
+  height: 1080px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-bottom: 2px solid var(--black);
+  padding: 0 32px;
 }
 
 .product-cta-container {
@@ -591,7 +604,7 @@
 .btn-cta-dark {
   padding: clamp(16px, 2vw, 28px) clamp(30px, 4vw, 62px);
   font-family: 'Poppins', sans-serif;
-  font-weight: 800;
+  font-weight: 600;
   font-size: clamp(14px, 1.6vw, 27px);
   border-radius: 9999px;
   cursor: pointer;
@@ -604,12 +617,12 @@
   background-color: var(--peach);
   color: var(--black);
   border: 3px solid var(--black);
-  box-shadow: 8px 8px 0px var(--black);
+  box-shadow: 9px 9px 0px var(--black);
 }
 
 .btn-cta-peach:hover {
   transform: translate(-3px, -3px);
-  box-shadow: 11px 11px 0px var(--black);
+  box-shadow: 12px 12px 0px var(--black);
   background-color: var(--white);
 }
 
@@ -617,18 +630,27 @@
   background-color: var(--black);
   color: var(--peach);
   border: 3px solid var(--peach);
-  box-shadow: 8px 8px 0px var(--black);
+  box-shadow: 9px 9px 0px var(--black);
 }
 
 .btn-cta-dark:hover {
   transform: translate(-3px, -3px);
-  box-shadow: 11px 11px 0px var(--black);
+  box-shadow: 12px 12px 0px var(--black);
   color: var(--white);
   border-color: var(--white);
 }
 
 /* Responsive Overrides */
 @media (max-width: 1024px) {
+  .product-hero,
+  .product-steps-section,
+  .product-bento-section,
+  .product-preorder-section,
+  .product-cta-section,
+  .product-page .vision-lab-card {
+    height: auto !important;
+  }
+
   .product-steps-container {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -686,7 +708,7 @@
   }
   
   .video-container-inner {
-    box-shadow: 6px 6px 0px var(--black);
+    box-shadow: none;
   }
   
   .steps-showcase-card {
@@ -742,4 +764,24 @@
   .preorder-badge-wrapper {
     max-width: 480px;
   }
+}
+
+/* Fullscreen Lab Note Section (1280x720 aspect/dimensions) */
+.product-page .vision-lab-section {
+  padding: 0;
+  border-bottom: 2px solid var(--black);
+  background-color: transparent;
+}
+
+.product-page .vision-lab-container {
+  max-width: none;
+  padding: 0;
+  width: 100%;
+}
+
+.product-page .vision-lab-card {
+  border-radius: 0;
+  border: none;
+  height: 749px;
+  padding: clamp(40px, 6vw, 100px) clamp(20px, 5vw, 120px);
 }
