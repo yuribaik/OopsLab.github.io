@@ -550,6 +550,11 @@
   margin: 0;
 }
 
+.bento-section-title span {
+  display: block;
+  white-space: nowrap;
+}
+
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);

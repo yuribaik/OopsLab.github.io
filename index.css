@@ -194,7 +194,7 @@ h6 {
 
 /* Hero Section */
 .hero {
-  background-color: var(--primary);
+  background-color: var(--bg-light);
   border-bottom: 1px solid var(--bg-dark);
   min-height: 820px;
   display: flex;
@@ -382,6 +382,7 @@ h6 {
 }
 
 @keyframes oopsHeroTopClearance {
+
   0%,
   72% {
     transform: translateY(42px);
@@ -417,13 +418,33 @@ body:not(.intro-active) .oopslab-huge-text span {
   animation: bounceUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-.oopslab-huge-text span:nth-child(1) { animation-delay: 0.0s; }
-.oopslab-huge-text span:nth-child(2) { animation-delay: 0.1s; }
-.oopslab-huge-text span:nth-child(3) { animation-delay: 0.2s; }
-.oopslab-huge-text span:nth-child(4) { animation-delay: 0.3s; }
-.oopslab-huge-text span:nth-child(5) { animation-delay: 0.4s; }
-.oopslab-huge-text span:nth-child(6) { animation-delay: 0.5s; }
-.oopslab-huge-text span:nth-child(7) { animation-delay: 0.6s; }
+.oopslab-huge-text span:nth-child(1) {
+  animation-delay: 0.0s;
+}
+
+.oopslab-huge-text span:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.oopslab-huge-text span:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.oopslab-huge-text span:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.oopslab-huge-text span:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.oopslab-huge-text span:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.oopslab-huge-text span:nth-child(7) {
+  animation-delay: 0.6s;
+}
 
 .oopslab-huge-text .l-letter {
   letter-spacing: 4.1px;
@@ -452,6 +473,7 @@ body:not(.intro-active) .oopslab-huge-text span {
 
 /* HERO Section (Intro) */
 .hero-intro-section {
+  background-color: var(--bg-light);
   border-bottom: 1px solid var(--bg-dark);
   padding: 66px 32px 101px;
   display: flex;
@@ -1823,19 +1845,24 @@ body:not(.intro-active) .oopslab-huge-text span {
     opacity: 0;
     transform: perspective(1200px) rotateX(-95deg);
   }
+
   30% {
     opacity: 1;
     transform: perspective(1200px) rotateX(25deg);
   }
+
   50% {
     transform: perspective(1200px) rotateX(-15deg);
   }
+
   70% {
     transform: perspective(1200px) rotateX(8deg);
   }
+
   85% {
     transform: perspective(1200px) rotateX(-4deg);
   }
+
   100% {
     opacity: 1;
     transform: perspective(1200px) rotateX(0deg);
@@ -2212,11 +2239,7 @@ body:not(.intro-active) .oopslab-huge-text span {
 
 .oops-physical-frame .oops-physical-media {
   transform:
-    translate3d(var(--oops-media-x), var(--oops-media-y), 24px)
-    rotateX(var(--oops-media-rx))
-    rotateY(var(--oops-media-ry))
-    rotate(var(--oops-media-rotate))
-    scale(var(--oops-media-scale));
+    translate3d(var(--oops-media-x), var(--oops-media-y), 24px) rotateX(var(--oops-media-rx)) rotateY(var(--oops-media-ry)) rotate(var(--oops-media-rotate)) scale(var(--oops-media-scale));
   transform-origin: center;
   transform-style: preserve-3d;
   will-change: transform;
@@ -2291,9 +2314,7 @@ body:not(.intro-active) .oopslab-huge-text span {
   text-align: center;
   text-transform: uppercase;
   transform:
-    translate3d(-50%, -50%, 0)
-    rotate(var(--sticker-rotate))
-    scale(0.2);
+    translate3d(-50%, -50%, 0) rotate(var(--sticker-rotate)) scale(0.2);
   transform-origin: center;
   opacity: 0;
   will-change: transform, opacity;
@@ -2315,49 +2336,35 @@ body:not(.intro-active) .oopslab-huge-text span {
   0% {
     opacity: 0;
     transform:
-      translate3d(-50%, -50%, 0)
-      rotate(calc(var(--sticker-rotate) - 7deg))
-      scale(calc(var(--sticker-scale) * 1.7));
+      translate3d(-50%, -50%, 0) rotate(calc(var(--sticker-rotate) - 7deg)) scale(calc(var(--sticker-scale) * 1.7));
   }
 
   22% {
     opacity: 1;
     transform:
-      translate3d(-50%, -50%, 0)
-      rotate(calc(var(--sticker-rotate) + 2deg))
-      scale(calc(var(--sticker-scale) * 0.88));
+      translate3d(-50%, -50%, 0) rotate(calc(var(--sticker-rotate) + 2deg)) scale(calc(var(--sticker-scale) * 0.88));
   }
 
   38% {
     opacity: 1;
     transform:
-      translate3d(-50%, -50%, 0)
-      rotate(var(--sticker-rotate))
-      scale(var(--sticker-scale));
+      translate3d(-50%, -50%, 0) rotate(var(--sticker-rotate)) scale(var(--sticker-scale));
   }
 
   76% {
     opacity: 0.9;
     transform:
-      translate3d(
-        calc(-50% + var(--sticker-settle-x)),
+      translate3d(calc(-50% + var(--sticker-settle-x)),
         calc(-50% + var(--sticker-settle-y)),
-        0
-      )
-      rotate(var(--sticker-rotate))
-      scale(calc(var(--sticker-scale) * 0.96));
+        0) rotate(var(--sticker-rotate)) scale(calc(var(--sticker-scale) * 0.96));
   }
 
   100% {
     opacity: 0;
     transform:
-      translate3d(
-        calc(-50% + var(--sticker-settle-x)),
+      translate3d(calc(-50% + var(--sticker-settle-x)),
         calc(-50% + var(--sticker-settle-y) + 5px),
-        0
-      )
-      rotate(var(--sticker-rotate))
-      scale(calc(var(--sticker-scale) * 0.82));
+        0) rotate(var(--sticker-rotate)) scale(calc(var(--sticker-scale) * 0.82));
   }
 }
 
@@ -2390,20 +2397,16 @@ body:not(.intro-active) .oopslab-huge-text span {
 
 .features-fireplace-section.oops-feature-glitch::before {
   transform:
-    translate3d(var(--feature-glitch-shift-x), var(--feature-glitch-shift-y), 0)
-    scale(1.012);
+    translate3d(var(--feature-glitch-shift-x), var(--feature-glitch-shift-y), 0) scale(1.012);
   filter: saturate(1.9) contrast(1.18) hue-rotate(-28deg);
   mix-blend-mode: screen;
 }
 
 .features-fireplace-section.oops-feature-glitch::after {
   transform:
-    translate3d(
-      var(--feature-glitch-shift-x-reverse),
+    translate3d(var(--feature-glitch-shift-x-reverse),
       var(--feature-glitch-shift-y-reverse),
-      0
-    )
-    scale(1.008);
+      0) scale(1.008);
   filter: saturate(1.8) contrast(1.2) hue-rotate(155deg);
   mix-blend-mode: color-dodge;
 }
@@ -2417,33 +2420,36 @@ body:not(.intro-active) .oopslab-huge-text span {
 }
 
 @keyframes oopsFeatureSliceA {
-  0%, 100% {
+
+  0%,
+  100% {
     clip-path: circle(9% at var(--feature-glitch-x) var(--feature-glitch-y));
   }
+
   35% {
-    clip-path: polygon(
-      0 calc(var(--feature-glitch-y) - 7%),
-      100% calc(var(--feature-glitch-y) - 11%),
-      100% calc(var(--feature-glitch-y) + 2%),
-      0 calc(var(--feature-glitch-y) + 6%)
-    );
+    clip-path: polygon(0 calc(var(--feature-glitch-y) - 7%),
+        100% calc(var(--feature-glitch-y) - 11%),
+        100% calc(var(--feature-glitch-y) + 2%),
+        0 calc(var(--feature-glitch-y) + 6%));
   }
+
   68% {
     clip-path: circle(7% at var(--feature-glitch-x) var(--feature-glitch-y));
   }
 }
 
 @keyframes oopsFeatureSliceB {
-  0%, 100% {
+
+  0%,
+  100% {
     clip-path: circle(8% at var(--feature-glitch-x) var(--feature-glitch-y));
   }
+
   42% {
-    clip-path: polygon(
-      0 calc(var(--feature-glitch-y) - 3%),
-      100% calc(var(--feature-glitch-y) - 6%),
-      100% calc(var(--feature-glitch-y) + 8%),
-      0 calc(var(--feature-glitch-y) + 4%)
-    );
+    clip-path: polygon(0 calc(var(--feature-glitch-y) - 3%),
+        100% calc(var(--feature-glitch-y) - 6%),
+        100% calc(var(--feature-glitch-y) + 8%),
+        0 calc(var(--feature-glitch-y) + 4%));
   }
 }
 
@@ -2524,19 +2530,40 @@ body:not(.intro-active) .oopslab-huge-text span {
 }
 
 /* Staggered delays for a wavy bounce effect */
-.bounce-logo .letter:nth-child(1) { animation-delay: 0.0s; }
-.bounce-logo .letter:nth-child(2) { animation-delay: 0.1s; }
-.bounce-logo .letter:nth-child(3) { animation-delay: 0.2s; }
-.bounce-logo .letter:nth-child(4) { animation-delay: 0.3s; }
-.bounce-logo .letter:nth-child(5) { animation-delay: 0.4s; }
-.bounce-logo .letter:nth-child(6) { animation-delay: 0.5s; }
-.bounce-logo .letter:nth-child(7) { animation-delay: 0.6s; }
+.bounce-logo .letter:nth-child(1) {
+  animation-delay: 0.0s;
+}
+
+.bounce-logo .letter:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.bounce-logo .letter:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.bounce-logo .letter:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.bounce-logo .letter:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.bounce-logo .letter:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.bounce-logo .letter:nth-child(7) {
+  animation-delay: 0.6s;
+}
 
 @keyframes logo-fade-in {
   from {
     opacity: 0;
     transform: scale(0.92);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -2544,12 +2571,16 @@ body:not(.intro-active) .oopslab-huge-text span {
 }
 
 @keyframes letter-bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) scale(1);
   }
+
   30% {
     transform: translateY(-28px) scaleY(1.15) scaleX(0.92);
   }
+
   50% {
     transform: translateY(0) scale(1);
   }
