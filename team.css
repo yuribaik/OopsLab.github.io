@@ -165,12 +165,29 @@
 }
 
 /* Tilt angles matching Figma */
-.card-tilt-1 { transform: rotate(2.77deg); }
-.card-tilt-2 { transform: rotate(-1.48deg); }
-.card-tilt-3 { transform: rotate(4.54deg); }
-.card-tilt-1:hover { transform: rotate(2.77deg) translate(-4px, -4px); }
-.card-tilt-2:hover { transform: rotate(-1.48deg) translate(-4px, -4px); }
-.card-tilt-3:hover { transform: rotate(4.54deg) translate(-4px, -4px); }
+.card-tilt-1 {
+  transform: rotate(2.77deg);
+}
+
+.card-tilt-2 {
+  transform: rotate(-1.48deg);
+}
+
+.card-tilt-3 {
+  transform: rotate(4.54deg);
+}
+
+.card-tilt-1:hover {
+  transform: rotate(2.77deg) translate(-4px, -4px);
+}
+
+.card-tilt-2:hover {
+  transform: rotate(-1.48deg) translate(-4px, -4px);
+}
+
+.card-tilt-3:hover {
+  transform: rotate(4.54deg) translate(-4px, -4px);
+}
 
 /* ══════════════════════════════════════════════
    2-B. "WE TAKE SMALL PROBLEMS SERIOUSLY."
@@ -419,6 +436,7 @@
    4. RESPONSIVE — Tablet (≤ 1200px)
    ══════════════════════════════════════════════ */
 @media (max-width: 1200px) {
+
   /* Objectives */
   .objectives-content {
     flex-direction: column;
@@ -531,7 +549,9 @@
     letter-spacing: -0.5px;
   }
 
-  .card-tilt-1, .card-tilt-2, .card-tilt-3 {
+  .card-tilt-1,
+  .card-tilt-2,
+  .card-tilt-3 {
     transform: rotate(0deg);
   }
 
