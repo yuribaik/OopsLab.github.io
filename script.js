@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.steps-showcase-card',
     '.bento-section-header',
     '.bento-item',
-    '.preorder-badge-wrapper',
     '.product-cta-container'
   ];
 
@@ -280,5 +279,31 @@ document.addEventListener('DOMContentLoaded', () => {
       productVideo.pause();
       videoContainer.classList.remove('playing');
     }
+  }
+
+  // Preorder Section Popup Hover and Close interaction
+  const preorderSection = document.querySelector('.product-preorder-section');
+  const preorderBadge = document.querySelector('.preorder-badge-wrapper');
+  const preorderCloseBtn = document.querySelector('.preorder-popup-close');
+
+  if (preorderSection && preorderBadge && preorderCloseBtn) {
+    let wasClosed = false;
+
+    preorderSection.addEventListener('mouseenter', () => {
+      if (!wasClosed) {
+        preorderBadge.classList.add('active');
+      }
+    });
+
+    preorderSection.addEventListener('mouseleave', () => {
+      preorderBadge.classList.remove('active');
+      wasClosed = false; // Reset close state so it can appear next time
+    });
+
+    preorderCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent triggering enter/leave events or clicks
+      preorderBadge.classList.remove('active');
+      wasClosed = true; // Mark as closed manually
+    });
   }
 });
