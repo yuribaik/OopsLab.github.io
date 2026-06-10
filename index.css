@@ -371,6 +371,18 @@ h6 {
   align-items: flex-start;
   pointer-events: none;
   z-index: 2;
+  animation: oopsHeroTopClearance 1.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes oopsHeroTopClearance {
+  0%,
+  72% {
+    transform: translateY(42px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .oopslab-huge-text {
@@ -1805,6 +1817,43 @@ h6 {
   filter: blur(0);
 }
 
+/* Shared CTA title entrance across index, team, and product pages. */
+.oops-cta-bounce {
+  opacity: 0;
+  transform: translate3d(0, 92px, 0) scaleY(0.78);
+  transform-origin: center bottom;
+  will-change: transform, opacity;
+}
+
+.oops-cta-bounce.oops-cta-bounce-in {
+  animation: oopsSharedCtaBounce 1.05s cubic-bezier(0.2, 0.82, 0.2, 1.18) forwards;
+}
+
+@keyframes oopsSharedCtaBounce {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 92px, 0) scaleY(0.78);
+  }
+
+  56% {
+    opacity: 1;
+    transform: translate3d(0, -18px, 0) scaleY(1.08);
+  }
+
+  76% {
+    transform: translate3d(0, 7px, 0) scaleY(0.96);
+  }
+
+  90% {
+    transform: translate3d(0, -3px, 0) scaleY(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scaleY(1);
+  }
+}
+
 .oops-media-kinetic {
   --oops-scroll-toss: 0px;
   --oops-scroll-spin: 0deg;
@@ -2423,5 +2472,16 @@ h6 {
   .features-fireplace-section.oops-feature-glitch::before,
   .features-fireplace-section.oops-feature-glitch::after {
     display: none;
+  }
+
+  .oopslab-text-overlay {
+    animation: none;
+  }
+
+  .oops-cta-bounce,
+  .oops-cta-bounce.oops-cta-bounce-in {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }

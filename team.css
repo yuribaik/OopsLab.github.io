@@ -30,7 +30,7 @@
 /* Giant "OOPS FINDERS" text behind the models */
 .hero-text-layer {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -68,6 +68,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
+  transform: scale(1.035);
+  transform-origin: center top;
   display: block;
 }
 
@@ -257,11 +260,12 @@
 
 .problems-image-layer {
   position: absolute;
-  top: 50%;
+  top: auto;
+  bottom: -2px;
   left: 50%;
-  transform: translate(-50%, -45%);
+  transform: translateX(-50%);
   z-index: 2;
-  width: 79%;
+  width: 86%;
   pointer-events: none;
 }
 
@@ -270,6 +274,12 @@
   height: auto;
   object-fit: contain;
   display: block;
+  transform:
+    translate3d(var(--team-problem-x, 0px), 0, 0)
+    scale(var(--team-problem-scale, 1.03))
+    rotate(var(--team-problem-rotate, 0deg));
+  transform-origin: center bottom;
+  transition: transform 0.18s ease-out;
 }
 
 /* ══════════════════════════════════════════════
@@ -566,5 +576,443 @@
 
   .team-problems {
     aspect-ratio: 1 / 1.2;
+  }
+}
+
+/* Team objectives spacing and coordinated scroll entrance. */
+@media (min-width: 1201px) {
+  .team-page-wrapper .objectives-content {
+    gap: clamp(88px, 6vw, 124px);
+  }
+
+  .team-page-wrapper .objectives-image-wrapper {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .team-page-wrapper .oops-list {
+    gap: 56px;
+  }
+}
+
+.team-page-wrapper .objectives-image-wrapper,
+.team-page-wrapper .oops-item {
+  transition:
+    opacity 0.78s cubic-bezier(0.16, 1, 0.3, 1),
+    translate 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    rotate 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.78s ease;
+}
+
+.team-page-wrapper .team-objectives.oops-sequence-ready .objectives-image-wrapper {
+  opacity: 0;
+  translate: -46px 28px;
+  rotate: -2deg;
+  filter: blur(8px);
+}
+
+.team-page-wrapper .team-objectives.oops-sequence-ready .oops-item {
+  opacity: 0;
+  translate: 52px 22px;
+  rotate: 0deg;
+  filter: blur(7px);
+}
+
+.team-page-wrapper .team-objectives.oops-sequence-ready .oops-item:nth-child(2) {
+  translate: 64px 8px;
+}
+
+.team-page-wrapper .team-objectives.oops-sequence-ready .oops-item:nth-child(3) {
+  translate: 48px -8px;
+}
+
+.team-page-wrapper .team-objectives.oops-sequence-ready.oops-sequence-in .objectives-image-wrapper,
+.team-page-wrapper .team-objectives.oops-sequence-ready.oops-sequence-in .oops-item {
+  opacity: 1;
+  translate: 0 0;
+  filter: blur(0);
+}
+
+.team-page-wrapper .team-objectives.oops-sequence-ready.oops-sequence-in .objectives-image-wrapper {
+  rotate: 0deg;
+  transition-delay: 0.05s;
+}
+
+.team-page-wrapper .team-objectives.oops-sequence-ready.oops-sequence-in .oops-item:nth-child(1) {
+  rotate: 2.5deg;
+  transition-delay: 0.18s;
+}
+
+.team-page-wrapper .team-objectives.oops-sequence-ready.oops-sequence-in .oops-item:nth-child(2) {
+  rotate: -1.5deg;
+  transition-delay: 0.3s;
+}
+
+.team-page-wrapper .team-objectives.oops-sequence-ready.oops-sequence-in .oops-item:nth-child(3) {
+  rotate: 3.5deg;
+  transition-delay: 0.42s;
+}
+
+.team-page-wrapper .team-objectives .objectives-image-wrapper,
+.team-page-wrapper .team-objectives .oops-item,
+.team-page-wrapper .team-objectives .oops-item:hover {
+  transform: none !important;
+}
+
+.team-page-wrapper .team-objectives .oops-item:hover {
+  box-shadow: 8px 8px 0 #000;
+}
+
+/* Team hero uses badge and tape stamps, distinct from the index stickers. */
+.team-sticker-trail {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.team-cursor-sticker {
+  --team-sticker-rotate: 0deg;
+  --team-sticker-scale: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border: 3px solid #222;
+  border-radius: 50%;
+  background: #f7d05c;
+  color: #222;
+  box-shadow: 6px 6px 0 #222;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.05;
+  text-align: center;
+  text-transform: uppercase;
+  transform:
+    translate3d(-50%, -50%, 0)
+    rotate(var(--team-sticker-rotate))
+    scale(0.2);
+  opacity: 0;
+  animation: teamStickerPress 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.team-cursor-sticker.is-team-tape {
+  width: 92px;
+  min-width: 92px;
+  height: 92px;
+  padding: 0;
+  border-radius: 50%;
+  background: #ffecd6;
+  color: #eb4400;
+  box-shadow: 6px 6px 0 #222;
+  filter: none;
+  clip-path: none;
+}
+
+.team-cursor-sticker.is-team-burst {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: #ff5a1f;
+  color: #ffecd6;
+  border: 3px solid #222;
+  box-shadow: 6px 6px 0 #222;
+  filter: none;
+  clip-path: none;
+}
+
+@keyframes teamStickerPress {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) rotate(calc(var(--team-sticker-rotate) - 12deg)) scale(1.55);
+  }
+  25% {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) rotate(calc(var(--team-sticker-rotate) + 3deg)) scale(calc(var(--team-sticker-scale) * 0.88));
+  }
+  42%, 76% {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) rotate(var(--team-sticker-rotate)) scale(var(--team-sticker-scale));
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-50%, calc(-50% + 7px), 0) rotate(var(--team-sticker-rotate)) scale(calc(var(--team-sticker-scale) * 0.9));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-page-wrapper .team-objectives.oops-sequence-ready .objectives-image-wrapper,
+  .team-page-wrapper .team-objectives.oops-sequence-ready .oops-item {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+    filter: none;
+  }
+
+  .team-sticker-trail {
+    display: none;
+  }
+}
+
+/* Team page scroll physics. Movement is capped to preserve the layout. */
+.team-page-wrapper .team-scroll-physical {
+  --team-scroll-y: 0px;
+  --team-scroll-rotate: 0deg;
+  --team-scroll-scale: 1;
+  translate: 0 var(--team-scroll-y);
+  rotate: var(--team-scroll-rotate);
+  scale: var(--team-scroll-scale);
+  will-change: translate, rotate, scale;
+  transition: translate 0.16s ease-out, rotate 0.2s ease-out, scale 0.2s ease-out;
+}
+
+.team-page-wrapper .team-problems.team-scroll-physical .problems-text-layer {
+  translate: 0 var(--team-text-depth, 0px);
+  transition: translate 0.18s ease-out;
+}
+
+.team-page-wrapper .team-problems.team-scroll-physical .problems-image-layer {
+  margin-bottom: 0;
+}
+
+.team-page-wrapper .team-problems.team-scroll-physical {
+  translate: 0 0;
+  rotate: 0deg;
+}
+
+.team-page-wrapper .intro-section.team-profile-physical .intro-heading {
+  translate: 0 var(--team-heading-depth, 0px);
+  transition: translate 0.2s ease-out;
+}
+
+.team-page-wrapper .intro-section.team-profile-physical .profile-image-group {
+  margin-top: var(--team-profile-depth, 0px);
+  transition: margin-top 0.18s ease-out;
+}
+
+.team-page-wrapper .intro-section.team-profile-physical .description-box {
+  translate: 0 var(--team-copy-depth, 0px);
+  transition: translate 0.22s ease-out;
+}
+
+.team-page-wrapper .intro-section.team-profile-physical .name-sticker {
+  margin-top: var(--team-sticker-depth, 0px);
+  transition: margin-top 0.2s ease-out;
+}
+
+.team-page-wrapper .intro-section.team-profile-physical .role-tag {
+  translate: 0 var(--team-role-depth, 0px);
+  transition: translate 0.2s ease-out;
+}
+
+/* Desktop sticky profile handoff: Minseo transitions into Yuri while scrolling. */
+@media (min-width: 901px) {
+  .team-profile-story {
+    position: relative;
+    height: 245vh;
+    min-height: 1960px;
+    padding-bottom: 110px;
+    background: #ffecd6;
+  }
+
+  .team-profile-sticky {
+    position: sticky;
+    top: 70px;
+    height: calc(100vh - 70px);
+    min-height: 760px;
+    overflow: hidden;
+    padding: 54px 0;
+  }
+
+  .team-profile-story .intro-section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(100% - 120px);
+    max-width: 1800px;
+    height: min(860px, calc(100vh - 178px));
+    margin: 0;
+    transform: translate3d(-50%, -50%, 0);
+    opacity: 1;
+    filter: none;
+    pointer-events: var(--profile-pointer, auto);
+  }
+
+  .team-profile-story .intro-yuri {
+    --profile-pointer: none;
+  }
+
+  .team-profile-story .profile-image-group {
+    margin-top: 0 !important;
+    transform: translateX(-50%) !important;
+    opacity: var(--profile-image-opacity, 1);
+    filter: none;
+    transition: opacity 0.42s ease;
+    will-change: opacity;
+  }
+
+  .team-profile-story .intro-heading {
+    opacity: var(--profile-heading-opacity, 1);
+    translate: var(--profile-heading-x, 0px) var(--profile-heading-y, 0px) !important;
+    rotate: var(--profile-heading-rotate, 0deg);
+    filter: none;
+    transition: none;
+    will-change: opacity, translate, rotate, filter;
+  }
+
+  .team-profile-story .description-box {
+    opacity: var(--profile-copy-opacity, 1);
+    translate: var(--profile-copy-x, 0px) var(--profile-copy-y, 0px) !important;
+    rotate: var(--profile-copy-rotate, 0deg);
+    filter: none;
+    transition: none;
+    will-change: opacity, translate, rotate, filter;
+  }
+
+  .team-profile-story .name-sticker {
+    opacity: var(--profile-sticker-opacity, 1);
+    margin-top: 0 !important;
+    scale: var(--profile-sticker-scale, 1);
+    filter: none;
+    transition: none;
+    will-change: opacity, scale, filter;
+  }
+
+  .team-profile-story .role-tag {
+    opacity: var(--profile-role-opacity, 1);
+    translate: var(--profile-role-x, 0px) var(--profile-role-y, 0px) !important;
+    rotate: var(--profile-role-rotate, 0deg);
+    transition: none;
+    will-change: opacity, translate, rotate;
+  }
+
+  .team-profile-story .intro-section.is-profile-glitching .intro-heading {
+    animation: teamProfileTextGlitch 0.58s steps(2, end) both;
+  }
+
+  .team-profile-story .intro-section.is-profile-glitching .description-box {
+    animation: teamProfileCardGlitch 0.64s steps(2, end) 0.06s both;
+  }
+
+  .team-profile-story .intro-section.is-profile-glitching .name-sticker {
+    animation: teamProfileStickerGlitch 0.52s steps(2, end) 0.12s both;
+  }
+
+  .team-profile-story .intro-section.is-profile-glitching .role-tag {
+    animation: teamProfileTagGlitch 0.5s steps(2, end) 0.18s both;
+  }
+
+  .team-profile-progress {
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    width: 5px;
+    height: 180px;
+    border: 1px solid #222;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-50%);
+    overflow: hidden;
+  }
+
+  .team-profile-progress-fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #ff5a1f;
+    transform: scaleY(var(--profile-progress, 0));
+    transform-origin: center top;
+    transition: transform 0.08s linear;
+  }
+}
+
+@keyframes teamProfileTextGlitch {
+  0% {
+    clip-path: inset(0 0 100% 0);
+    text-shadow: -10px 0 #ff5a1f, 10px 0 #ffecd6;
+  }
+  28% {
+    clip-path: inset(58% 0 8% 0);
+    translate: calc(var(--profile-heading-x, 0px) - 10px) var(--profile-heading-y, 0px);
+    text-shadow: 8px 0 #ff5a1f, -7px 0 #f7d05c;
+  }
+  52% {
+    clip-path: inset(10% 0 56% 0);
+    translate: calc(var(--profile-heading-x, 0px) + 7px) var(--profile-heading-y, 0px);
+  }
+  74% {
+    clip-path: inset(35% 0 25% 0);
+    text-shadow: -3px 0 #ff5a1f, 3px 0 #f7d05c;
+  }
+  100% {
+    clip-path: inset(0);
+    text-shadow: none;
+  }
+}
+
+@keyframes teamProfileCardGlitch {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    filter: hue-rotate(28deg) saturate(1.5);
+  }
+  32% {
+    clip-path: polygon(0 0, 94% 0, 100% 28%, 8% 33%, 4% 68%, 100% 72%, 100% 100%, 0 100%);
+    translate: calc(var(--profile-copy-x, 0px) + 12px) var(--profile-copy-y, 0px);
+  }
+  58% {
+    clip-path: polygon(0 0, 100% 0, 94% 42%, 3% 37%, 8% 78%, 100% 82%, 100% 100%, 0 100%);
+    translate: calc(var(--profile-copy-x, 0px) - 7px) var(--profile-copy-y, 0px);
+  }
+  100% {
+    clip-path: inset(0);
+    filter: none;
+  }
+}
+
+@keyframes teamProfileStickerGlitch {
+  0% { opacity: 0; scale: 1.45; filter: hue-rotate(80deg); }
+  38% { opacity: 1; scale: 0.84; translate: 9px -4px; }
+  65% { scale: 1.08; translate: -4px 2px; }
+  100% { scale: var(--profile-sticker-scale, 1); translate: 0 0; filter: none; }
+}
+
+@keyframes teamProfileTagGlitch {
+  0% { opacity: 0; clip-path: inset(0 100% 0 0); }
+  45% { opacity: 1; clip-path: inset(0 22% 0 0); filter: invert(1); }
+  70% { clip-path: inset(0 0 0 18%); }
+  100% { clip-path: inset(0); filter: none; }
+}
+
+@media (max-width: 900px) {
+  .team-profile-story {
+    background: #ffecd6;
+    padding-bottom: 72px;
+  }
+
+  .team-profile-progress {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-page-wrapper .team-scroll-physical,
+  .team-page-wrapper .team-problems.team-scroll-physical .problems-text-layer,
+  .team-page-wrapper .intro-section.team-profile-physical .intro-heading,
+  .team-page-wrapper .intro-section.team-profile-physical .description-box,
+  .team-page-wrapper .intro-section.team-profile-physical .role-tag {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+
+  .team-page-wrapper .team-problems.team-scroll-physical .problems-image-layer,
+  .team-page-wrapper .intro-section.team-profile-physical .profile-image-group,
+  .team-page-wrapper .intro-section.team-profile-physical .name-sticker {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }

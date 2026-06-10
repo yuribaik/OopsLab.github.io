@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.how-step-card',
     '.vision-lab-card',
     '.features-fireplace-container',
-    '.cta-floating-container',
 
     // Existing project layout elements
     '.problem-header',
@@ -51,8 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '.step-item',
     '.steps-showcase-card',
     '.bento-section-header',
-    '.bento-item',
-    '.product-cta-container'
+    '.bento-item'
   ];
 
   // Premium Scroll Reveal float up style (similar to gethapply.com)
@@ -339,13 +337,9 @@ document.addEventListener('DOMContentLoaded', () => {
     '.how-works-header',
     '.features-fireplace-title',
     '.vision-quote',
-    '.cta-floating-title',
     '.objectives-title',
-    '.intro-heading',
-    '.description-box',
     '.steps-section-title',
-    '.bento-section-header',
-    '.product-cta-title'
+    '.bento-section-header'
   ];
 
   const softRevealSelectors = [
@@ -354,9 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '.features-fireplace-container',
     '.vision-lab-card',
     '.team-hero',
-    '.objectives-image-wrapper',
     '.team-problems',
-    '.profile-image-group',
     '.product-hero',
     '.video-container-inner',
     '.steps-showcase-card',
@@ -369,10 +361,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.features-fireplace-card',
     '.equation-arrow-container',
     '.note-icon-circle',
-    '.hero-container',
-    '.objectives-image-wrapper',
-    '.team-problems',
-    '.profile-image-group',
     '.product-hero-floating-img',
     '.video-container-inner',
     '.steps-showcase-card',
@@ -385,7 +373,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.note-card',
     '.note-icon-circle',
     '.feature-card',
-    '.oops-item',
     '.bento-item',
     '.steps-showcase-card',
     '.product-cta-buttons button',
@@ -400,7 +387,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.product-hero-bg-text',
     '.steps-section-title',
     '.bento-section-title',
-    '.product-cta-title',
     '.hero-giant-text',
     '.problems-giant-line',
     '.footer-huge-logo'
@@ -422,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
   addClassToMatches(softRevealSelectors, 'oops-kinetic-soft');
   addClassToMatches(mediaSelectors, 'oops-media-kinetic');
   addClassToMatches(cardSelectors, 'oops-magnetic-hover');
-  document.querySelectorAll('.bento-item, .steps-showcase-card, .oops-item, .feature-fireplace-card').forEach(el => {
+  document.querySelectorAll('.bento-item, .steps-showcase-card, .feature-fireplace-card').forEach(el => {
     if (!el.style.getPropertyValue('--oops-base-transform')) {
       const baseTransform = getComputedStyle(el).transform;
       el.style.setProperty('--oops-base-transform', baseTransform === 'none' ? 'none' : baseTransform);
@@ -446,6 +432,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  const sharedCtaTitles = document.querySelectorAll('.cta-floating-title, .product-cta-title');
+  sharedCtaTitles.forEach(title => title.classList.add('oops-cta-bounce'));
+
+  if (prefersReducedMotion) {
+    sharedCtaTitles.forEach(title => title.classList.add('oops-cta-bounce-in'));
+  } else {
+    const sharedCtaObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('oops-cta-bounce-in');
+        sharedCtaObserver.unobserve(entry.target);
+      });
+    }, {
+      rootMargin: '0px 0px -12% 0px',
+      threshold: 0.28
+    });
+
+    sharedCtaTitles.forEach(title => sharedCtaObserver.observe(title));
+  }
 
   if (!prefersReducedMotion) {
     const immersiveObserver = new IntersectionObserver((entries) => {
@@ -584,10 +590,6 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.setProperty('--oops-scroll-spin', `${(normalized * 0.55 * direction).toFixed(2)}deg`);
       });
 
-      document.querySelectorAll('.oops-ticker-reactive').forEach(ticker => {
-        ticker.style.setProperty('--oops-ticker-speed', (1 - Math.min(Math.abs(normalized) * 0.38, 0.38)).toFixed(3));
-      });
-
       scrollVelocity *= 0.78;
       scrollFrame = Math.abs(scrollVelocity) > 0.08
         ? requestAnimationFrame(updateScrollPhysics)
@@ -649,6 +651,101 @@ document.addEventListener('DOMContentLoaded', () => {
 
         typingObserver.observe(labNote);
       }
+    }
+
+    const labFinderCard = document.querySelector('.product-page .vision-lab-card');
+    if (labFinderCard && !prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
+      labFinderCard.classList.add('oops-lab-finder');
+
+      const finderTarget = document.createElement('div');
+      finderTarget.className = 'oops-lab-finder-target';
+      finderTarget.setAttribute('aria-hidden', 'true');
+
+      const finderFrame = document.createElement('span');
+      finderFrame.className = 'oops-lab-finder-frame';
+      const finderLabel = document.createElement('span');
+      finderLabel.className = 'oops-lab-finder-label';
+      finderLabel.textContent = 'OOPS! FOUND';
+
+      finderTarget.appendChild(finderFrame);
+      finderTarget.appendChild(finderLabel);
+      labFinderCard.appendChild(finderTarget);
+
+      let finderMouseX = 0;
+      let finderMouseY = 0;
+      let finderX = 0;
+      let finderY = 0;
+      let finderFrameId = null;
+      let finderCaptureTimer = null;
+
+      const animateFinder = () => {
+        finderX += (finderMouseX - finderX) * 0.16;
+        finderY += (finderMouseY - finderY) * 0.16;
+        finderTarget.style.setProperty('--finder-x', `${finderX.toFixed(2)}px`);
+        finderTarget.style.setProperty('--finder-y', `${finderY.toFixed(2)}px`);
+
+        const distance = Math.hypot(finderMouseX - finderX, finderMouseY - finderY);
+        finderFrameId = distance > 0.08 ? requestAnimationFrame(animateFinder) : null;
+      };
+
+      const startFinder = () => {
+        if (!finderFrameId) finderFrameId = requestAnimationFrame(animateFinder);
+      };
+
+      const burstFinderParticles = () => {
+        for (let index = 0; index < 10; index += 1) {
+          const angle = (Math.PI * 2 * index) / 10 + (Math.random() - 0.5) * 0.35;
+          const distance = 78 + Math.random() * 54;
+          const particle = document.createElement('i');
+          particle.className = 'oops-lab-finder-particle';
+          particle.style.setProperty('--particle-x', `${(Math.cos(angle) * distance).toFixed(1)}px`);
+          particle.style.setProperty('--particle-y', `${(Math.sin(angle) * distance).toFixed(1)}px`);
+          particle.style.setProperty('--particle-rotate', `${Math.round(Math.random() * 180)}deg`);
+          finderTarget.appendChild(particle);
+          particle.addEventListener('animationend', () => particle.remove(), { once: true });
+        }
+      };
+
+      labFinderCard.addEventListener('pointerenter', event => {
+        const rect = labFinderCard.getBoundingClientRect();
+        finderMouseX = event.clientX - rect.left;
+        finderMouseY = event.clientY - rect.top;
+        finderX = finderMouseX;
+        finderY = finderMouseY;
+        finderTarget.classList.add('is-finder-visible');
+        document.querySelector('.custom-cursor-ring')?.style.setProperty('opacity', '0');
+        document.querySelector('.custom-cursor-dot')?.style.setProperty('opacity', '0');
+        startFinder();
+      });
+
+      labFinderCard.addEventListener('pointermove', event => {
+        const rect = labFinderCard.getBoundingClientRect();
+        finderMouseX = Math.max(96, Math.min(rect.width - 96, event.clientX - rect.left));
+        finderMouseY = Math.max(96, Math.min(rect.height - 118, event.clientY - rect.top));
+        startFinder();
+
+        clearTimeout(finderCaptureTimer);
+        finderCaptureTimer = setTimeout(() => {
+          finderTarget.classList.remove('is-finder-captured');
+          void finderTarget.offsetWidth;
+          finderTarget.classList.add('is-finder-captured');
+          finderLabel.textContent = Math.random() > 0.5 ? 'OOPS! FOUND' : 'TARGET LOCKED';
+          burstFinderParticles();
+        }, 240);
+      }, { passive: true });
+
+      labFinderCard.addEventListener('pointerleave', () => {
+        clearTimeout(finderCaptureTimer);
+        finderTarget.classList.remove('is-finder-visible', 'is-finder-captured');
+        document.querySelector('.custom-cursor-ring')?.style.setProperty('opacity', '1');
+        document.querySelector('.custom-cursor-dot')?.style.setProperty('opacity', '1');
+      });
+
+      finderFrame.addEventListener('animationend', event => {
+        if (event.animationName === 'oopsFinderCapture') {
+          finderTarget.classList.remove('is-finder-captured');
+        }
+      });
     }
 
     const bentoCards = Array.from(document.querySelectorAll('.bento-item'));
@@ -760,16 +857,77 @@ document.addEventListener('DOMContentLoaded', () => {
       addDepthPan(productLabCard, '--lab-pan-x', '--lab-pan-y', 24);
       addDepthPan(productPreorder, '--preorder-pan-x', '--preorder-pan-y', 20);
     }
+
+    const productHero = document.querySelector('.product-hero');
+    const productStickerTrail = productHero?.querySelector('.product-sticker-trail');
+    if (productHero && productStickerTrail && !prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
+      const productStickerLabels = ['CLIP IT', 'OOPS 01', 'QUICK FIX', 'LAB GOODS', 'KEEP CLOSE'];
+      let productStickerIndex = 0;
+      let productPreviousX = null;
+      let productPreviousY = null;
+      let productPreviousTime = 0;
+
+      productHero.addEventListener('pointermove', event => {
+        const rect = productHero.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const now = performance.now();
+
+        if (productPreviousX === null) {
+          productPreviousX = x;
+          productPreviousY = y;
+          productPreviousTime = now;
+          return;
+        }
+
+        const dx = x - productPreviousX;
+        const dy = y - productPreviousY;
+        const distance = Math.hypot(dx, dy);
+        if (distance < 82 || now - productPreviousTime < 78) return;
+
+        const sticker = document.createElement('span');
+        const variation = productStickerIndex % 4;
+        sticker.className = 'product-cursor-sticker';
+        if (variation === 1) sticker.classList.add('is-product-orange');
+        if (variation === 2) sticker.classList.add('is-product-black');
+        if (variation === 3) sticker.classList.add('is-product-vertical');
+        sticker.textContent = productStickerLabels[productStickerIndex % productStickerLabels.length];
+        productStickerIndex += 1;
+
+        const isVertical = variation === 3;
+        const edgeX = isVertical ? 54 : 82;
+        const edgeY = isVertical ? 70 : 44;
+        sticker.style.left = `${Math.max(edgeX, Math.min(rect.width - edgeX, x))}px`;
+        sticker.style.top = `${Math.max(edgeY, Math.min(rect.height - edgeY, y))}px`;
+        sticker.style.setProperty('--product-sticker-rotate', `${(-10 + Math.random() * 20).toFixed(1)}deg`);
+        sticker.style.setProperty('--product-sticker-scale', (0.88 + Math.random() * 0.24).toFixed(2));
+        if (!isVertical) {
+          sticker.style.setProperty('--product-sticker-width', `${118 + Math.round(Math.random() * 54)}px`);
+          sticker.style.setProperty('--product-sticker-height', `${54 + Math.round(Math.random() * 22)}px`);
+        }
+        productStickerTrail.appendChild(sticker);
+
+        while (productStickerTrail.children.length > 8) {
+          productStickerTrail.firstElementChild?.remove();
+        }
+
+        sticker.addEventListener('animationend', () => sticker.remove(), { once: true });
+        productPreviousX = x;
+        productPreviousY = y;
+        productPreviousTime = now;
+      }, { passive: true });
+
+      productHero.addEventListener('pointerleave', () => {
+        productPreviousX = null;
+        productPreviousY = null;
+      });
+    }
   }
 
   // Distinct spring-based movement for imagery that does not already have
   // a dedicated product interaction.
   if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-    const physicalMediaConfigs = [
-      { wrapper: '.hero-container', media: '.hero-fg-layer img', mode: 'oops-depth-drift', x: 15, y: 11, tilt: 4.2, spring: 0.11, friction: 0.74 },
-      { wrapper: '.objectives-image-wrapper', media: '.objectives-img', mode: 'oops-inertia-pan', x: 24, y: 18, tilt: 6.4, spring: 0.12, friction: 0.71 },
-      { wrapper: '.team-problems', media: '.problems-img', mode: 'oops-elastic-follow', x: 27, y: 17, tilt: 5.2, spring: 0.135, friction: 0.68 }
-    ];
+    const physicalMediaConfigs = [];
 
     physicalMediaConfigs.forEach(config => {
       document.querySelectorAll(config.wrapper).forEach(wrapper => {
@@ -907,6 +1065,228 @@ document.addEventListener('DOMContentLoaded', () => {
   if (simpleVisionFrame && simpleVisionImage) {
     simpleVisionFrame.classList.add('oops-physical-frame', 'oops-vision-gimbal');
     simpleVisionImage.classList.add('oops-physical-media');
+  }
+
+  const teamObjectives = document.querySelector('.team-page-wrapper .team-objectives');
+  if (teamObjectives) {
+    teamObjectives.classList.add('oops-sequence-ready');
+
+    if (prefersReducedMotion) {
+      teamObjectives.classList.add('oops-sequence-in');
+    } else {
+      const teamSequenceObserver = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          teamObjectives.classList.add('oops-sequence-in');
+          teamSequenceObserver.disconnect();
+        }
+      }, {
+        rootMargin: '0px 0px -18% 0px',
+        threshold: 0.18
+      });
+
+      teamSequenceObserver.observe(teamObjectives);
+    }
+  }
+
+  const teamHero = document.querySelector('.team-page-wrapper .team-hero');
+  const teamStickerTrail = teamHero?.querySelector('.team-sticker-trail');
+  if (teamHero && teamStickerTrail && !prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
+    const teamStickerLabels = ['OOPS FINDER', 'LOOK CLOSER', 'TEAM NOTE', 'SPOTTED'];
+    let teamStickerIndex = 0;
+    let teamPreviousX = null;
+    let teamPreviousY = null;
+    let teamPreviousTime = 0;
+
+    teamHero.addEventListener('pointermove', event => {
+      const rect = teamHero.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const now = performance.now();
+
+      if (teamPreviousX === null) {
+        teamPreviousX = x;
+        teamPreviousY = y;
+        teamPreviousTime = now;
+        return;
+      }
+
+      const dx = x - teamPreviousX;
+      const dy = y - teamPreviousY;
+      const distance = Math.hypot(dx, dy);
+      if (distance < 92 || now - teamPreviousTime < 90) return;
+
+      const sticker = document.createElement('span');
+      const variation = teamStickerIndex % 3;
+      sticker.className = `team-cursor-sticker${variation === 1 ? ' is-team-tape' : variation === 2 ? ' is-team-burst' : ''}`;
+      sticker.textContent = teamStickerLabels[teamStickerIndex % teamStickerLabels.length];
+      teamStickerIndex += 1;
+
+      sticker.style.left = `${Math.max(72, Math.min(rect.width - 72, x))}px`;
+      sticker.style.top = `${Math.max(62, Math.min(rect.height - 62, y))}px`;
+      sticker.style.setProperty('--team-sticker-rotate', `${(-16 + Math.random() * 32).toFixed(1)}deg`);
+      sticker.style.setProperty('--team-sticker-scale', (0.88 + Math.random() * 0.28).toFixed(2));
+      teamStickerTrail.appendChild(sticker);
+
+      while (teamStickerTrail.children.length > 7) {
+        teamStickerTrail.firstElementChild?.remove();
+      }
+
+      sticker.addEventListener('animationend', () => sticker.remove(), { once: true });
+      teamPreviousX = x;
+      teamPreviousY = y;
+      teamPreviousTime = now;
+    }, { passive: true });
+
+    teamHero.addEventListener('pointerleave', () => {
+      teamPreviousX = null;
+      teamPreviousY = null;
+    });
+  }
+
+  const teamPageWrapper = document.querySelector('.team-page-wrapper');
+  if (teamPageWrapper && !prefersReducedMotion) {
+    const teamProblemSection = teamPageWrapper.querySelector('.team-problems');
+    const teamProfiles = Array.from(teamPageWrapper.querySelectorAll('.intro-section'));
+    const teamScrollSections = [teamProblemSection].filter(Boolean);
+
+    teamProblemSection?.classList.add('team-scroll-physical');
+
+    let teamPreviousScroll = window.scrollY;
+    let teamScrollVelocity = 0;
+    let teamPhysicsFrame = null;
+
+    const updateTeamScrollPhysics = () => {
+      const currentScroll = window.scrollY;
+      teamScrollVelocity = teamScrollVelocity * 0.7 + (currentScroll - teamPreviousScroll) * 0.3;
+      teamPreviousScroll = currentScroll;
+      const velocity = Math.max(-1, Math.min(1, teamScrollVelocity / 52));
+
+      teamScrollSections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.bottom < -160 || rect.top > window.innerHeight + 160) return;
+
+        const viewportProgress = Math.max(-1, Math.min(1,
+          (window.innerHeight * 0.5 - (rect.top + rect.height * 0.5)) /
+          Math.max(window.innerHeight, rect.height)
+        ));
+        const direction = index % 2 === 0 ? 1 : -1;
+
+        section.style.setProperty('--team-scroll-y', `${(velocity * 5 * direction).toFixed(2)}px`);
+        section.style.setProperty('--team-scroll-rotate', `${(velocity * 0.22 * direction).toFixed(2)}deg`);
+
+        if (section.classList.contains('team-problems')) {
+          section.style.setProperty('--team-text-depth', `${(viewportProgress * -10).toFixed(2)}px`);
+          section.style.setProperty('--team-problem-scale', (1.05 + Math.abs(viewportProgress) * 0.055).toFixed(4));
+          section.style.setProperty('--team-problem-rotate', `${(velocity * 0.65).toFixed(2)}deg`);
+          section.style.setProperty('--team-problem-x', `${(viewportProgress * 20).toFixed(2)}px`);
+        }
+      });
+
+      teamScrollVelocity *= 0.78;
+      teamPhysicsFrame = Math.abs(teamScrollVelocity) > 0.08
+        ? requestAnimationFrame(updateTeamScrollPhysics)
+        : null;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!teamPhysicsFrame) teamPhysicsFrame = requestAnimationFrame(updateTeamScrollPhysics);
+    }, { passive: true });
+
+    updateTeamScrollPhysics();
+  }
+
+  const teamProfileStory = document.querySelector('.team-profile-story');
+  const minseoProfile = teamProfileStory?.querySelector('.intro-minseo');
+  const yuriProfile = teamProfileStory?.querySelector('.intro-yuri');
+  if (teamProfileStory && minseoProfile && yuriProfile && !prefersReducedMotion) {
+    let profileStoryFrame = null;
+    const smoothStep = value => {
+      const t = Math.max(0, Math.min(1, value));
+      return t * t * (3 - 2 * t);
+    };
+
+    const updateProfileStory = () => {
+      if (window.innerWidth <= 900) {
+        [minseoProfile, yuriProfile].forEach(profile => {
+          [
+            '--profile-pointer',
+            '--profile-image-opacity',
+            '--profile-heading-opacity', '--profile-heading-x', '--profile-heading-y', '--profile-heading-rotate',
+            '--profile-copy-opacity', '--profile-copy-x', '--profile-copy-y', '--profile-copy-rotate',
+            '--profile-sticker-opacity', '--profile-sticker-scale',
+            '--profile-role-opacity', '--profile-role-x', '--profile-role-y', '--profile-role-rotate'
+          ]
+            .forEach(name => profile.style.removeProperty(name));
+        });
+        profileStoryFrame = null;
+        return;
+      }
+
+      const rect = teamProfileStory.getBoundingClientRect();
+      const scrollRange = Math.max(1, rect.height - window.innerHeight);
+      const progress = Math.max(0, Math.min(1, -rect.top / scrollRange));
+      const minseoExit = smoothStep((progress - 0.22) / 0.34);
+      const yuriEnter = smoothStep((progress - 0.4) / 0.34);
+
+      minseoProfile.style.setProperty('--profile-pointer', minseoExit > 0.7 ? 'none' : 'auto');
+      yuriProfile.style.setProperty('--profile-pointer', yuriEnter > 0.45 ? 'auto' : 'none');
+
+      minseoProfile.style.setProperty('--profile-image-opacity', (1 - minseoExit).toFixed(3));
+      minseoProfile.style.setProperty('--profile-heading-opacity', (1 - minseoExit).toFixed(3));
+      minseoProfile.style.setProperty('--profile-heading-x', `${(-110 * minseoExit).toFixed(2)}px`);
+      minseoProfile.style.setProperty('--profile-heading-y', `${(-24 * minseoExit).toFixed(2)}px`);
+      minseoProfile.style.setProperty('--profile-heading-rotate', `${(-3 * minseoExit).toFixed(2)}deg`);
+      minseoProfile.style.setProperty('--profile-copy-opacity', (1 - minseoExit).toFixed(3));
+      minseoProfile.style.setProperty('--profile-copy-x', `${(-80 * minseoExit).toFixed(2)}px`);
+      minseoProfile.style.setProperty('--profile-copy-y', `${(42 * minseoExit).toFixed(2)}px`);
+      minseoProfile.style.setProperty('--profile-copy-rotate', `${(-5 * minseoExit).toFixed(2)}deg`);
+      minseoProfile.style.setProperty('--profile-sticker-opacity', (1 - minseoExit).toFixed(3));
+      minseoProfile.style.setProperty('--profile-sticker-scale', (1 - minseoExit * 0.28).toFixed(3));
+      minseoProfile.style.setProperty('--profile-role-opacity', (1 - minseoExit).toFixed(3));
+      minseoProfile.style.setProperty('--profile-role-x', `${(70 * minseoExit).toFixed(2)}px`);
+      minseoProfile.style.setProperty('--profile-role-y', `${(28 * minseoExit).toFixed(2)}px`);
+      minseoProfile.style.setProperty('--profile-role-rotate', `${(7 * minseoExit).toFixed(2)}deg`);
+
+      const yuriHidden = 1 - yuriEnter;
+      yuriProfile.style.setProperty('--profile-image-opacity', yuriEnter.toFixed(3));
+      yuriProfile.style.setProperty('--profile-heading-opacity', yuriEnter.toFixed(3));
+      yuriProfile.style.setProperty('--profile-heading-x', `${(-110 * yuriHidden).toFixed(2)}px`);
+      yuriProfile.style.setProperty('--profile-heading-y', `${(-24 * yuriHidden).toFixed(2)}px`);
+      yuriProfile.style.setProperty('--profile-heading-rotate', `${(3 * yuriHidden).toFixed(2)}deg`);
+      yuriProfile.style.setProperty('--profile-copy-opacity', yuriEnter.toFixed(3));
+      yuriProfile.style.setProperty('--profile-copy-x', `${(80 * yuriHidden).toFixed(2)}px`);
+      yuriProfile.style.setProperty('--profile-copy-y', `${(42 * yuriHidden).toFixed(2)}px`);
+      yuriProfile.style.setProperty('--profile-copy-rotate', `${(5 * yuriHidden).toFixed(2)}deg`);
+      yuriProfile.style.setProperty('--profile-sticker-opacity', yuriEnter.toFixed(3));
+      yuriProfile.style.setProperty('--profile-sticker-scale', (0.72 + yuriEnter * 0.28).toFixed(3));
+      yuriProfile.style.setProperty('--profile-role-opacity', yuriEnter.toFixed(3));
+      yuriProfile.style.setProperty('--profile-role-x', `${(-70 * yuriHidden).toFixed(2)}px`);
+      yuriProfile.style.setProperty('--profile-role-y', `${(28 * yuriHidden).toFixed(2)}px`);
+      yuriProfile.style.setProperty('--profile-role-rotate', `${(-7 * yuriHidden).toFixed(2)}deg`);
+      teamProfileStory.style.setProperty('--profile-progress', progress.toFixed(4));
+
+      const activeProfile = progress < 0.5 ? minseoProfile : yuriProfile;
+      if (teamProfileStory.dataset.activeProfile !== activeProfile.id) {
+        teamProfileStory.dataset.activeProfile = activeProfile.id;
+        activeProfile.classList.remove('is-profile-glitching');
+        void activeProfile.offsetWidth;
+        activeProfile.classList.add('is-profile-glitching');
+        const activeRoleTag = activeProfile.querySelector('.role-tag');
+        activeRoleTag?.addEventListener('animationend', () => {
+          activeProfile.classList.remove('is-profile-glitching');
+        }, { once: true });
+      }
+
+      profileStoryFrame = null;
+    };
+
+    const requestProfileStoryUpdate = () => {
+      if (!profileStoryFrame) profileStoryFrame = requestAnimationFrame(updateProfileStory);
+    };
+
+    window.addEventListener('scroll', requestProfileStoryUpdate, { passive: true });
+    window.addEventListener('resize', requestProfileStoryUpdate);
+    updateProfileStory();
   }
 
   // Index hero only: cursor movement leaves short-lived stamped stickers.
