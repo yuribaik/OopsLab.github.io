@@ -286,7 +286,7 @@
 .intro-heading {
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
-  font-size: clamp(40px, 5vw, 100px);
+  font-size: clamp(40px, 5vw, 84px);
   line-height: 1.05;
   letter-spacing: -2px;
   color: #222222;
@@ -361,7 +361,7 @@
 /* 이름 스티커 */
 .name-sticker {
   position: absolute;
-  width: 360px;
+  width: 280px;
   z-index: 10;
 }
 
@@ -381,7 +381,7 @@
 .role-tag {
   position: absolute;
   background-color: #f7d05c;
-  padding: 20px 30px;
+  padding: 14px 28px;
   border: 3.5px solid #000;
   border-radius: 10px;
   font-weight: 800;
@@ -525,64 +525,6 @@
     font-size: clamp(20px, 3.5vw, 32px);
   }
 
-  /* Profiles */
-  .profile-heading {
-    font-size: clamp(36px, 5vw, 72px);
-    margin-bottom: 40px;
-  }
-
-  .profile-grid,
-  .yuri-grid {
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
-  }
-
-  .profile-col-portrait {
-    width: 100%;
-    max-width: 500px;
-  }
-
-  .profile-col-info {
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .profile-col-badge {
-    justify-content: center;
-  }
-
-  .profile-col-info-right {
-    align-items: center;
-  }
-
-  .name-sticker-wrapper {
-    width: 400px;
-    margin: 0 auto -20px;
-  }
-
-  .minseo-block .name-sticker-wrapper,
-  .yuri-block .name-sticker-wrapper {
-    box-shadow: none;
-  }
-
-  .name-sticker-right {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .desc-card {
-    padding: 32px 28px;
-  }
-
-  .role-badge {
-    padding: 20px 50px;
-  }
-
-  .profile-block {
-    padding: 60px 0 50px;
-  }
-
   /* Problems */
   .problems-giant-line {
     font-size: clamp(40px, 8vw, 120px);
@@ -612,45 +554,6 @@
   .oops-item h3 {
     font-size: 18px;
     letter-spacing: -0.5px;
-  }
-
-  .profile-heading {
-    font-size: clamp(28px, 8vw, 42px);
-    margin-bottom: 24px;
-    letter-spacing: -1px;
-  }
-
-  .desc-card {
-    padding: 24px 20px;
-    border-radius: 14px;
-    box-shadow: 8px 8px 0px 0px #000000;
-  }
-
-  .desc-text {
-    font-size: 16px;
-  }
-
-  .portrait-card {
-    border-radius: 14px;
-  }
-
-  .role-badge {
-    padding: 16px 32px;
-    border-radius: 14px;
-    border-width: 4px !important;
-    min-height: auto;
-  }
-
-  .role-title {
-    font-size: 18px;
-  }
-
-  .name-sticker-wrapper {
-    width: 260px;
-  }
-
-  .profile-block {
-    padding: 40px 0 32px;
   }
 
   .hero-container {
