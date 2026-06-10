@@ -36,6 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
     '.step-card',
     '.profile-card',
     '.goal-card',
+    '.oops-note-card',
+    '.profile-quote-card',
+    '.profile-portrait-wrapper',
+    '.profile-role-badge',
+    '.goal-graphic-wrapper',
+    '.cta-inner',
 
     // Product Page sections & components
     '.product-hero-bg-text',

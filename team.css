@@ -1,762 +1,588 @@
-/* ==========================================================================
-   Oops Lab - Team Page Specific Styles (Neo-Brutalist High Fidelity Design)
-   ========================================================================== */
+/* =============================================
+   Team Page — Complete Redesign (Figma 256-7)
+   Pixel-accurate brutalist shadow system
+   ============================================= */
 
-/* Page Background Overrides */
-.team-page {
-  background-color: var(--bg-light) !important;
-  color: var(--text-dark);
-  font-family: var(--font-body);
-  overflow-x: hidden;
+/* Team page wrapper override */
+.team-page-wrapper {
+  background-color: #ffecd6;
 }
 
-/* Common Layout Helpers */
-.border-box {
-  border: 3.57px solid var(--bg-dark) !important;
-}
-
-.shadow-box {
-  box-shadow: 14.29px 14.29px 0px var(--bg-dark) !important;
-}
-
-.shadow-box-sm {
-  box-shadow: 6px 6px 0px var(--bg-dark) !important;
-}
-
-/* Animations */
-.animate-up {
-  opacity: 1;
-  transform: translateY(0);
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-}
-
-/* --------------------------------------------------------------------------
-   Sticky Glassmorphic Navigation Bar
-   -------------------------------------------------------------------------- */
-.navbar {
-  backdrop-filter: blur(12.5px);
-  -webkit-backdrop-filter: blur(12.5px);
-  background: rgba(255, 255, 255, 0.6) !important;
-  border-bottom: 2.5px solid var(--bg-dark) !important;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  height: 70px;
-}
-
-/* --------------------------------------------------------------------------
-   Hero Section - 3D Overlapping Image Layout
-   -------------------------------------------------------------------------- */
+/* ══════════════════════════════════════════════
+   1. HERO SECTION — "OOPS FINDERS" + BG/FG
+   ══════════════════════════════════════════════ */
 .team-hero {
-  position: relative;
   width: 100%;
-  aspect-ratio: 1920 / 989;
-  min-height: 480px;
-  max-height: 989px;
-  background-color: var(--bg-light);
   overflow: hidden;
+  background: linear-gradient(90deg, #eb4400, #eb4400);
 }
 
-.hero-bg-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+.hero-container {
   width: 100%;
-  height: 100%;
-}
-
-.hero-bg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Watermark text sandwiched in the middle */
-.hero-watermark {
-  position: absolute;
-  top: 51%;
-  left: 5%;
-  transform: translateY(-50%);
-  z-index: 2;
-  font-family: var(--font-heading);
-  font-size: clamp(80px, 19vw, 388px);
-  font-weight: 900;
-  color: var(--bg-light);
-  text-shadow: 7.67px 7.67px 0px var(--bg-dark);
-  letter-spacing: -9.23px;
-  line-height: 0.85;
-  text-transform: uppercase;
-  pointer-events: none;
-  user-select: none;
-  width: 90%;
-  white-space: nowrap;
-}
-
-.watermark-line.line-2 {
-  padding-left: 14vw;
-}
-
-.hero-fg-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Let clicks pass through if needed */
-}
-
-.hero-fg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* --------------------------------------------------------------------------
-   Tickers
-   -------------------------------------------------------------------------- */
-.border-y {
-  border-top: 3.57px solid var(--bg-dark) !important;
-  border-bottom: 3.57px solid var(--bg-dark) !important;
-}
-
-.ticker-orange {
-  background-color: var(--primary) !important;
-  height: 70px;
-}
-
-.ticker-orange span {
-  font-size: 30px !important;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  letter-spacing: -0.4px;
-  padding: 0 14px;
-}
-
-.ticker-black {
-  background-color: var(--bg-dark) !important;
-  height: 70px;
-}
-
-.ticker-black span {
-  font-size: 30px !important;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  letter-spacing: -0.4px;
-  padding: 0 14px;
-}
-
-.ticker-track {
-  display: flex;
-  animation: ticker-animation 25s linear infinite;
-  gap: 48px;
-  height: 100%;
-  align-items: center;
-}
-
-.ticker-track.reverse {
-  animation-direction: reverse;
-}
-
-@keyframes ticker-animation {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* --------------------------------------------------------------------------
-   Intro Section ("WE NEVER IGNORE THE OOPS")
-   -------------------------------------------------------------------------- */
-.team-intro {
   position: relative;
-  padding: 120px 0;
-  background-color: var(--bg-light);
+  aspect-ratio: 1920 / 1009;
   overflow: hidden;
-}
-
-.intro-container {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.intro-left {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.section-title {
-  font-size: clamp(48px, 6.2vw, 110px);
-  line-height: 1.0;
-  letter-spacing: -2px;
-  color: var(--bg-dark);
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.intro-image-wrapper {
-  border-radius: 21.4px;
-  overflow: hidden;
-  background-color: var(--white);
-  height: 629px;
-  width: 100%;
-}
-
-.intro-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.intro-right {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding-top: 60px;
-}
-
-/* Note Cards with badge icon overlays */
-.note-card-wrapper {
-  position: relative;
-  width: 100%;
-  transition: transform 0.3s ease;
-}
-
-.note-card-wrapper:hover {
-  transform: scale(1.03) !important;
-}
-
-.card-rotate-1 { transform: rotate(2.77deg); }
-.card-rotate-2 { transform: rotate(-1.48deg); }
-.card-rotate-3 { transform: rotate(4.54deg); }
-
-.oops-note-card {
-  background-color: var(--white);
-  border-radius: 21.43px;
-  padding: 30.3px 39.3px 39.3px;
-  display: flex;
-  flex-direction: column;
-  gap: 8.9px;
-  width: 100%;
-}
-
-.note-header {
-  font-family: var(--font-heading);
-  font-size: 28.58px;
-  font-weight: 600;
-  color: var(--bg-dark);
-}
-
-.note-text {
-  font-family: var(--font-heading);
-  font-size: clamp(22px, 2.3vw, 37.5px);
-  font-weight: 800;
-  letter-spacing: -1.78px;
-  color: var(--bg-dark);
-  line-height: 1.2;
-}
-
-.note-badge {
-  position: absolute;
-  width: 93px;
-  height: 93px;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.card-rotate-1 .note-badge {
-  top: -30px;
-  right: -30px;
-}
-
-.card-rotate-2 .note-badge {
-  top: -30px;
-  left: -30px;
-}
-
-.card-rotate-3 .note-badge {
-  top: -30px;
-  right: -30px;
-}
-
-.note-badge img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* --------------------------------------------------------------------------
-   Goal Section ("WE TAKE SMALL PROBLEMS SERIOUSLY.")
-   -------------------------------------------------------------------------- */
-.team-goal-section {
-  position: relative;
-  padding: 120px 0 0;
-  background-color: var(--bg-light);
-  border-bottom: 3.57px solid var(--bg-dark);
-  overflow: hidden;
-  height: 1400px;
-}
-
-.goal-bg-white {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1295px;
-  background-color: var(--white);
-  z-index: 1;
-  border-top: 3.57px solid var(--bg-dark);
-}
-
-.goal-container {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.goal-title-huge {
-  font-size: clamp(60px, 12.5vw, 233.37px);
-  line-height: 1.0;
-  letter-spacing: -4.24px;
-  color: var(--bg-dark);
-  font-weight: 800;
-  text-transform: uppercase;
-  text-align: center;
-  margin-top: 150px;
-  pointer-events: none;
-  user-select: none;
-}
-
-.goal-graphic-wrapper {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1216px;
-  z-index: 3;
-}
-
-.goal-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* --------------------------------------------------------------------------
-   Team Profiles Section
-   -------------------------------------------------------------------------- */
-.profile-section {
-  padding: 120px 0;
-  background-color: var(--bg-light);
-  border-bottom: 3.57px solid var(--bg-dark);
-}
-
-.profile-container {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-}
-
-.profile-header-group {
-  width: 100%;
-}
-
-.profile-section-title {
-  font-size: clamp(40px, 6vw, 110px);
-  line-height: 1.0;
-  letter-spacing: -2px;
-  font-weight: 800;
-  color: var(--bg-dark);
-}
-
-.profile-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.profile-reversed {
-  grid-template-columns: 0.85fr 1.15fr;
-}
-
-/* Profile details column containing blob and values card */
-.profile-details-column {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.profile-name-blob {
-  max-width: 100%;
-  filter: drop-shadow(14px 14px 0px var(--bg-dark));
-}
-
-.profile-name-blob img {
-  height: auto;
-  max-height: 250px;
-  object-fit: contain;
-}
-
-.name-blob-right {
-  align-self: flex-end;
-}
-
-.profile-quote-group {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.values-subtitle {
-  font-size: 28.45px;
-  font-weight: 800;
-  color: var(--bg-dark);
-  text-transform: uppercase;
-}
-
-.profile-quote-card {
-  background-color: var(--white);
-  border-radius: 21.44px;
-  padding: 40px;
-  height: 280px;
   display: flex;
   align-items: center;
-  transition: transform 0.3s ease;
-}
-
-.profile-quote-card:hover {
-  transform: translate(-3px, -3px);
-}
-
-.quote-text {
-  font-size: 24px;
-  line-height: 1.4;
-  font-weight: 400;
-  color: var(--bg-dark);
-  font-family: var(--font-body);
-}
-
-/* Profile media column containing photo and badge */
-.profile-media-column {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.profile-photo-card {
-  border-radius: 18.28px;
-  overflow: hidden;
-  background-color: #d9d9d9;
-  width: 100%;
-  aspect-ratio: 900 / 1160;
-  transition: transform 0.3s ease;
-}
-
-.profile-photo-card:hover {
-  transform: translate(-3px, -3px);
-}
-
-.photo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.profile-badge-pill {
-  padding: 15px 30px;
-  border-radius: 21.67px;
-  font-family: var(--font-heading);
-  font-size: 28.45px;
-  font-weight: 800;
-  color: var(--bg-dark);
-  background-color: #ffd166; /* Bright yellow */
-  display: inline-block;
-  margin-top: 30px;
-  width: 435px;
-  max-width: 100%;
-  text-align: center;
-}
-
-/* --------------------------------------------------------------------------
-   CTA Section ("GOT AN OOPS? LET'S FIX IT.")
-   -------------------------------------------------------------------------- */
-.team-cta {
-  background-color: var(--primary);
-  padding: 206px 32px;
-  text-align: center;
-  border-bottom: 3.57px solid var(--bg-dark);
-}
-
-.cta-inner {
-  max-width: 1440px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 49px;
-}
-
-.cta-title-huge {
-  font-size: clamp(60px, 9.5vw, 157px);
-  line-height: 0.95;
-  letter-spacing: -2.98px;
-  font-weight: 900;
-  color: var(--bg-dark);
-  text-transform: uppercase;
-}
-
-.cta-buttons-group {
-  display: flex;
-  gap: 35.8px;
-  flex-wrap: wrap;
   justify-content: center;
 }
 
-.btn-peach-offset {
-  background-color: var(--bg-light) !important;
-  color: var(--bg-dark) !important;
-  border: 2.98px solid var(--bg-dark) !important;
-  box-shadow: 8.95px 8.95px 0px var(--bg-dark) !important;
-  padding: 32.8px 62.6px !important;
-  border-radius: 9999px !important;
-  font-family: var(--font-heading) !important;
-  font-size: 27px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.45px !important;
-  text-transform: uppercase !important;
-  cursor: pointer !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+/* Giant "OOPS FINDERS" text behind the models */
+.hero-text-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 8%;
+  width: 100%;
+  pointer-events: none;
 }
 
-.btn-peach-offset:hover {
-  box-shadow: 12px 12px 0px var(--bg-dark) !important;
-  transform: translate(-3px, -3px) !important;
+.hero-giant-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: clamp(80px, 20vw, 388px);
+  line-height: 0.85;
+  color: #ffecd6;
+  text-transform: uppercase;
+  text-shadow: 8px 8px 0px #222;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
 }
 
-.btn-dark-outline-offset {
-  background-color: var(--bg-dark) !important;
-  color: var(--bg-light) !important;
-  border: 2.98px solid var(--bg-light) !important;
-  box-shadow: 8.95px 8.95px 0px var(--bg-light) !important;
-  padding: 32.8px 62.6px !important;
-  border-radius: 9999px !important;
-  font-family: var(--font-heading) !important;
-  font-size: 27px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.45px !important;
-  text-transform: uppercase !important;
-  cursor: pointer !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+/* Foreground: Team member cutout (above the text) */
+.hero-fg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 }
 
-.btn-dark-outline-offset:hover {
-  box-shadow: 12px 12px 0px var(--bg-light) !important;
-  transform: translate(-3px, -3px) !important;
+.hero-fg-layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-/* --------------------------------------------------------------------------
-   Footer with Large Watermark
-   -------------------------------------------------------------------------- */
-.team-footer {
-  position: relative;
-  background-color: #1a1a1a !important;
-  padding: 80px 32px 40px !important;
+/* ══════════════════════════════════════════════
+   2-A. TEAM OBJECTIVES — "WE NEVER IGNORE THE OOPS."
+   ══════════════════════════════════════════════ */
+.team-objectives {
+  background-color: #ffecd6;
+  padding: 60px 0;
+}
+
+.objectives-inner {
+  max-width: 1850px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.objectives-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: clamp(48px, 6vw, 110px);
+  line-height: 1.0;
+  color: #222;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  margin-bottom: 68px;
+}
+
+.objectives-content {
+  display: flex;
+  gap: 57px;
+  align-items: flex-start;
+}
+
+/* Left: Desk photo */
+.objectives-image-wrapper {
+  flex: 0 0 auto;
+  width: 52%;
+  border-radius: 18px;
   overflow: hidden;
+}
+
+.objectives-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 926 / 667;
+  object-fit: cover;
+  display: block;
+  border-radius: 18px;
+}
+
+/* Right: Oops Note Cards stack */
+.objectives-cards {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+}
+
+/* Single Oops Note Card — thick black solid shadow (Figma: 14.29px 14.29px 0px black) */
+.oops-note-card {
+  background: #ffffff;
+  border: 3.57px solid #222222;
+  border-radius: 21px;
+  padding: 30px 39px 39px;
+  box-shadow: 14px 14px 0px #000000;
+  width: 100%;
+  max-width: 786px;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
+}
+
+.oops-note-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 18px 18px 0px #000000;
+}
+
+.note-tag {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(18px, 1.5vw, 28.5px);
+  color: #222;
+  display: block;
+  margin-bottom: 9px;
+}
+
+.note-heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: clamp(20px, 2vw, 37.5px);
+  color: #222;
+  text-transform: uppercase;
+  letter-spacing: -1.8px;
+  line-height: 1.2;
+}
+
+/* Tilt angles matching Figma */
+.card-tilt-1 { transform: rotate(2.77deg); }
+.card-tilt-2 { transform: rotate(-1.48deg); }
+.card-tilt-3 { transform: rotate(4.54deg); }
+.card-tilt-1:hover { transform: rotate(2.77deg) translate(-4px, -4px); }
+.card-tilt-2:hover { transform: rotate(-1.48deg) translate(-4px, -4px); }
+.card-tilt-3:hover { transform: rotate(4.54deg) translate(-4px, -4px); }
+
+/* ══════════════════════════════════════════════
+   2-B. "WE TAKE SMALL PROBLEMS SERIOUSLY."
+   ══════════════════════════════════════════════ */
+.team-problems {
+  background: #ffffff;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1920 / 1295;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.problems-text-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.footer-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1856px;
-  border-top: 1px solid rgba(255, 236, 214, 0.1);
-  padding-top: 25px;
-  padding-bottom: 25px;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-.footer-left-group {
-  display: flex;
-  gap: 75px;
-  flex-wrap: wrap;
-}
-
-.footer-left-group a {
-  color: rgba(255, 236, 214, 0.7);
-  text-decoration: none;
-  font-size: 19px;
-  font-weight: 600;
-  letter-spacing: 0.65px;
-  text-transform: uppercase;
-  transition: color 0.2s ease;
-}
-
-.footer-left-group a:hover {
-  color: var(--primary);
-}
-
-.footer-copyright-group {
-  color: rgba(255, 236, 214, 0.7);
-  font-size: 19px;
-  font-weight: 600;
-}
-
-.footer-watermark {
-  font-family: var(--font-heading);
-  font-size: clamp(100px, 21vw, 405px);
-  font-weight: 900;
-  color: #ffecd6;
-  text-shadow: 8px 8px 0px var(--bg-dark);
-  letter-spacing: -9.64px;
-  line-height: 0.85;
-  text-transform: uppercase;
-  pointer-events: none;
-  user-select: none;
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: -20px;
+  width: 100%;
+  pointer-events: none;
 }
 
-.watermark-l {
-  color: var(--primary) !important;
-  letter-spacing: 4.09px;
+.problems-giant-line {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: clamp(48px, 13vw, 242px);
+  line-height: 0.9;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: -0.042em;
+  white-space: nowrap;
 }
 
-/* --------------------------------------------------------------------------
-   Responsive Design Media Queries
-   -------------------------------------------------------------------------- */
+.problems-image-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  z-index: 2;
+  width: 79%;
+  pointer-events: none;
+}
 
-/* Laptop / Desktop adjustments */
+.problems-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ══════════════════════════════════════════════
+   3. PROFILES SECTION — Kim Minseo & Baik Yuri
+   ══════════════════════════════════════════════ */
+.profiles-section {
+  background-color: #ffecd6;
+  padding: 0;
+}
+
+.profile-block {
+  padding: 100px 0 80px;
+}
+
+.profile-heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: clamp(48px, 6vw, 110px);
+  line-height: 1.0;
+  color: #222222;
+  text-transform: uppercase;
+  margin-bottom: 59px;
+  letter-spacing: -2px;
+}
+
+/* Profile Grid — 3-column layout */
+.profile-grid {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.minseo-grid {
+  justify-content: flex-end;
+}
+
+.yuri-grid {
+  justify-content: flex-start;
+}
+
+/* Profile columns */
+.profile-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-col-info {
+  gap: 0;
+  justify-content: flex-end;
+  max-width: 684px;
+}
+
+.profile-col-info-right {
+  align-items: flex-end;
+}
+
+.profile-col-portrait {
+  flex: 0 0 auto;
+  width: 617px;
+}
+
+.profile-col-badge {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+/* ── Name Sticker ── */
+.name-sticker-wrapper {
+  width: 601px;
+  max-width: 100%;
+  margin-bottom: -30px;
+  z-index: 3;
+  position: relative;
+}
+
+/* Figma: Minseo sticker has shadow: -36px 25px 0px 0px black */
+.minseo-block .name-sticker-wrapper {
+  box-shadow: -36px 25px 0px 0px #000000;
+}
+
+.name-sticker-right {
+  margin-left: auto;
+}
+
+/* Figma: Yuri sticker has shadow: 36px 25px 0px 0px black */
+.yuri-block .name-sticker-wrapper {
+  box-shadow: 36px 25px 0px 0px #000000;
+}
+
+.name-sticker {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ── NEO-BRUTALIST SHADOW SYSTEM (Figma-exact) ── */
+
+/* Heavy shadow — for description cards (Figma: 14.29px 14.29px 0px 0px black) */
+.neo-shadow {
+  box-shadow: 14px 14px 0px 0px #000000 !important;
+}
+
+/* Medium shadow — for portrait cards (Figma: 6px 6px 0px 0px black) */
+.neo-shadow-sm {
+  box-shadow: 6px 6px 0px 0px #000000 !important;
+}
+
+/* Thick border for role badges (Figma: border: 7px solid black) */
+.neo-border-thick {
+  border-width: 7px !important;
+  border-color: #000000 !important;
+}
+
+/* ── Description Card ── */
+.desc-card {
+  background: #ffffff;
+  border: 3.57px solid #222222;
+  border-radius: 21px;
+  padding: 48px 40px;
+  box-shadow: 14px 14px 0px 0px #000000;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
+}
+
+.desc-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 18px 18px 0px 0px #000000;
+}
+
+.desc-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(18px, 1.3vw, 24px);
+  font-weight: 400;
+  line-height: 1.4;
+  color: #222222;
+}
+
+/* ── Portrait Card ── */
+.portrait-card {
+  width: 100%;
+  aspect-ratio: 617 / 795;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 3.57px solid #000000;
+  box-shadow: 6px 6px 0px 0px #000000;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
+}
+
+.portrait-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0px 0px #000000;
+}
+
+.portrait-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Role Badge ── */
+.role-badge {
+  border: 7px solid #000000;
+  border-radius: 20px;
+  padding: 30px 90px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.role-badge:hover {
+  transform: translate(-3px, -3px);
+}
+
+.badge-yellow {
+  background-color: #FFD166;
+}
+
+.role-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(20px, 1.5vw, 28.5px);
+  font-weight: 800;
+  color: #000000;
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════
+   4. RESPONSIVE — Tablet (≤ 1200px)
+   ══════════════════════════════════════════════ */
 @media (max-width: 1200px) {
-  .intro-container {
-    gap: 40px;
-  }
-  .profile-grid, .profile-reversed {
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
-  }
-  .profile-reversed {
-    grid-template-columns: 0.9fr 1.1fr;
-  }
-}
-
-/* Tablet adjustments */
-@media (max-width: 1024px) {
-  .team-hero {
-    min-height: 380px;
-    height: auto;
-  }
-  .hero-watermark {
-    font-size: 13vw;
-    letter-spacing: -4px;
-  }
-  .watermark-line.line-2 {
-    padding-left: 8vw;
-  }
-  .intro-container {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-  .intro-right {
-    padding-top: 0;
-  }
-  .profile-grid, .profile-reversed {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-  .profile-reversed .profile-media-column {
-    order: -1;
-  }
-  .profile-media-column {
-    order: -1;
-    align-items: center;
-  }
-  .profile-quote-card {
-    height: auto;
-    padding: 30px;
-  }
-  .profile-photo-card {
-    max-width: 600px;
-  }
-  .profile-name-blob {
-    text-align: center;
-  }
-  .name-blob-right {
-    align-self: center;
-  }
-  .team-goal-section {
-    height: auto;
-    padding: 80px 0 0;
-  }
-  .goal-bg-white {
-    height: 70%;
-  }
-  .goal-graphic-wrapper {
-    position: relative;
-    transform: none;
-    left: 0;
-    margin: 40px auto 0;
-    max-width: 90%;
-  }
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .team-hero {
-    min-height: 280px;
-  }
-  .hero-watermark {
-    font-size: 14vw;
-    letter-spacing: -3px;
-  }
-  .watermark-line.line-2 {
-    padding-left: 4vw;
-  }
-  .note-card-wrapper {
-    transform: none !important;
-  }
-  .note-badge {
-    display: none; /* Hide badges on small screens to avoid overlaps */
-  }
-  .profile-badge-pill {
-    font-size: 20px;
-    padding: 12px 24px;
-    width: 100%;
-  }
-  .cta-buttons-group {
+  /* Objectives */
+  .objectives-content {
     flex-direction: column;
-    width: 100%;
-    align-items: center;
+    gap: 40px;
   }
-  .btn-peach-offset, .btn-dark-outline-offset {
+
+  .objectives-image-wrapper {
     width: 100%;
-    max-width: 400px;
-    padding: 20px 30px !important;
-    font-size: 20px !important;
   }
-  .footer-left-group {
-    justify-content: center;
+
+  .objectives-cards {
+    max-width: 100%;
+  }
+
+  .objectives-title {
+    font-size: clamp(36px, 5vw, 72px);
+    margin-bottom: 40px;
+  }
+
+  /* Profiles */
+  .profile-heading {
+    font-size: clamp(36px, 5vw, 72px);
+    margin-bottom: 40px;
+  }
+
+  .profile-grid,
+  .yuri-grid {
+    flex-direction: column;
     gap: 30px;
+    align-items: center;
   }
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
+
+  .profile-col-portrait {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .profile-col-info {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .profile-col-badge {
+    justify-content: center;
+  }
+
+  .profile-col-info-right {
+    align-items: center;
+  }
+
+  .name-sticker-wrapper {
+    width: 400px;
+    margin: 0 auto -20px;
+  }
+
+  .minseo-block .name-sticker-wrapper,
+  .yuri-block .name-sticker-wrapper {
+    box-shadow: none;
+  }
+
+  .name-sticker-right {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .desc-card {
+    padding: 32px 28px;
+  }
+
+  .role-badge {
+    padding: 20px 50px;
+  }
+
+  .profile-block {
+    padding: 60px 0 50px;
+  }
+
+  /* Problems */
+  .problems-giant-line {
+    font-size: clamp(40px, 8vw, 120px);
+  }
+}
+
+/* ══════════════════════════════════════════════
+   5. RESPONSIVE — Mobile (≤ 640px)
+   ══════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .objectives-inner {
+    padding: 0 24px;
+  }
+
+  .objectives-title {
+    font-size: clamp(28px, 8vw, 42px);
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+
+  .oops-note-card {
+    padding: 20px 24px 28px;
+    box-shadow: 8px 8px 0px #000000;
+    border-radius: 14px;
+  }
+
+  .note-tag {
+    font-size: 16px;
+  }
+
+  .note-heading {
+    font-size: 18px;
+    letter-spacing: -0.5px;
+  }
+
+  .card-tilt-1, .card-tilt-2, .card-tilt-3 {
+    transform: rotate(0deg);
+  }
+
+  .profile-heading {
+    font-size: clamp(28px, 8vw, 42px);
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+
+  .desc-card {
+    padding: 24px 20px;
+    border-radius: 14px;
+    box-shadow: 8px 8px 0px 0px #000000;
+  }
+
+  .desc-text {
+    font-size: 16px;
+  }
+
+  .portrait-card {
+    border-radius: 14px;
+  }
+
+  .role-badge {
+    padding: 16px 32px;
+    border-radius: 14px;
+    border-width: 4px !important;
+    min-height: auto;
+  }
+
+  .role-title {
+    font-size: 18px;
+  }
+
+  .name-sticker-wrapper {
+    width: 260px;
+  }
+
+  .profile-block {
+    padding: 40px 0 32px;
+  }
+
+  .hero-container {
+    aspect-ratio: 16 / 10;
+  }
+
+  .problems-giant-line {
+    font-size: clamp(28px, 10vw, 80px);
+  }
+
+  .team-problems {
+    aspect-ratio: 1 / 1.2;
   }
 }
