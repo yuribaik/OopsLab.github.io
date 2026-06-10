@@ -350,14 +350,15 @@
 
   .product-steps-container {
     position: sticky;
-    top: 0;
+    top: 90px;
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 90px);
+    align-items: center;
   }
 
   .steps-showcase-card {
     width: auto;
-    height: min(880px, calc(100vh - 120px));
+    height: min(720px, calc(100vh - 160px));
     max-width: 100%;
   }
 }
@@ -1438,90 +1439,90 @@
   transform-style: preserve-3d;
 }
 
-.product-page .bento-item.oops-product-tilt {
+.product-page .bento-grid.oops-product-tilt {
   --product-rx: 0deg;
   --product-ry: 0deg;
-  --product-z: 0px;
-  --product-scale: 1;
   --product-light-x: 50%;
   --product-light-y: 50%;
-  --product-shine: 0;
+  --product-scale: 1;
   transform:
-    perspective(1100px)
-    translate3d(0, -4px, var(--product-z))
+    perspective(2000px)
     rotateX(var(--product-rx))
     rotateY(var(--product-ry))
     scale(var(--product-scale)) !important;
   transform-style: preserve-3d;
   transform-origin: center;
-  transition:
-    transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.25s ease,
-    filter 0.25s ease;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: transform;
 }
 
-.product-page .bento-item.oops-product-tilt::after {
-  background:
-    radial-gradient(
-      circle at var(--product-light-x) var(--product-light-y),
-      rgba(255, 255, 255, 0.92) 0,
-      rgba(255, 236, 214, 0.42) 10%,
-      rgba(255, 90, 31, 0.12) 27%,
-      transparent 53%
-    ),
-    linear-gradient(
-      115deg,
-      transparent 20%,
-      rgba(255, 255, 255, 0.42) 43%,
-      transparent 66%
-    );
-  background-position:
-    center,
-    calc(var(--product-light-x) * 1.4) center;
-  background-size: 100% 100%, 210% 100%;
-  opacity: var(--product-shine);
-  mix-blend-mode: screen;
+.product-page .bento-grid.oops-product-tilt.is-product-hover {
+  --product-scale: 1.012;
 }
 
-.product-page .bento-item.oops-product-tilt.is-product-hover {
-  --product-z: 22px;
-  --product-scale: 1.018;
-  --product-shine: 0;
+.product-page .bento-grid.oops-product-tilt > .bento-item {
+  transform: translateZ(15px);
+  transform-style: preserve-3d;
+  box-shadow: 6px 6px 0 var(--black);
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s ease,
+    filter 0.25s ease;
+  position: relative;
+}
+
+.product-page .bento-grid.oops-product-tilt.is-product-hover > .bento-item {
+  transform: translateZ(38px);
   box-shadow: 14px 18px 0 rgba(34, 34, 34, 0.96);
 }
 
-.product-page .bento-item.oops-product-tilt > * {
-  transform: translateZ(28px);
-  transform-style: preserve-3d;
-  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+.product-page .oops-product-tilt .bento-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at var(--product-light-x) var(--product-light-y),
+      rgba(255, 255, 255, 0.42) 0,
+      rgba(255, 236, 214, 0.15) 22%,
+      transparent 55%
+    );
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity 0.3s ease;
 }
 
-.product-page .bento-card-infinite.oops-product-tilt .bento-card-bg {
-  transform: translateZ(12px) scale(1.035);
+.product-page .bento-grid.oops-product-tilt.is-product-hover .bento-item::after {
+  opacity: 1;
 }
 
-.product-page .bento-card-infinite.oops-product-tilt .bento-card-content {
-  transform: translateZ(54px);
+.product-page .oops-product-tilt .bento-card-infinite .bento-card-bg {
+  transform: translateZ(12px) scale(1.02);
 }
 
-.product-page .bento-card-orange.oops-product-tilt .bento-card-icon-wrapper {
+.product-page .oops-product-tilt .bento-card-infinite .bento-card-content {
+  transform: translateZ(48px);
+}
+
+.product-page .oops-product-tilt .bento-card-orange .bento-card-icon-wrapper {
   transform:
-    translate3d(var(--product-icon-x, 0px), var(--product-icon-y, 0px), 62px)
+    translate3d(var(--product-icon-x, 0px), var(--product-icon-y, 0px), 52px)
     rotate(var(--product-icon-spin, 0deg));
   transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.product-page .bento-card-white.oops-product-tilt.is-product-hover {
+.product-page .oops-product-tilt .bento-card-white.is-product-hover {
   animation: none;
 }
 
-.product-page .bento-card-black.oops-product-tilt .bento-card-flex-text {
-  transform: translateZ(50px);
+.product-page .oops-product-tilt .bento-card-black .bento-card-flex-text {
+  transform: translateZ(45px);
 }
 
-.product-page .bento-card-black.oops-product-tilt .bento-card-flex-image {
-  transform: translateZ(20px) scale(1.025);
+.product-page .oops-product-tilt .bento-card-black .bento-card-flex-image {
+  transform: translateZ(18px) scale(1.015);
 }
 
 .product-page .video-container-inner.oops-product-cinematic #product-video {
@@ -1563,7 +1564,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .product-page .bento-item.oops-product-tilt,
+  .product-page .bento-grid.oops-product-tilt,
+  .product-page .bento-grid.oops-product-tilt > .bento-item,
   .product-page .video-container-inner.oops-product-cinematic #product-video,
   .product-page .vision-lab-card.oops-product-depth .vision-bg-img,
   .product-page .product-preorder-section.oops-product-drift .preorder-bg-img {

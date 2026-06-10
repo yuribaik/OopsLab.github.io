@@ -15,71 +15,136 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  // Add basic animation classes via JS to keep CSS clean
-  const sectionsToAnimate = [
-    // Landing Page sections & components
-    '.hero-intro-content',
-    '.problem-notes-header',
-    '.retro-notes-board',
-    '.equation-container',
-    '.how-works-header',
-    '.how-step-card',
-    '.vision-lab-card',
-    '.features-fireplace-container',
+  function startScrollAnimations() {
+    // Add basic animation classes via JS to keep CSS clean
+    const sectionsToAnimate = [
+      // Landing Page sections & components
+      '.hero-intro-content',
+      '.problem-notes-header',
+      '.retro-notes-board',
+      '.equation-container',
+      '.how-works-header',
+      '.how-step-card',
+      '.vision-lab-card',
+      '.features-fireplace-container',
 
-    // Existing project layout elements
-    '.problem-header',
-    '.problem-card',
-    '.features-container h2',
-    '.feature-card',
-    '.step-card',
-    '.profile-card',
-    '.goal-card',
-    '.oops-note-card',
-    '.profile-quote-card',
-    '.profile-portrait-wrapper',
-    '.profile-role-badge',
-    '.goal-graphic-wrapper',
-    '.cta-inner',
+      // Existing project layout elements
+      '.problem-header',
+      '.problem-card',
+      '.features-container h2',
+      '.feature-card',
+      '.step-card',
+      '.profile-card',
+      '.goal-card',
+      '.oops-note-card',
+      '.profile-quote-card',
+      '.profile-portrait-wrapper',
+      '.profile-role-badge',
+      '.goal-graphic-wrapper',
+      '.cta-inner',
 
-    // Product Page sections & components
-    // ※ product-hero-bg-text, product-hero-image-container, product-video-section 제외
-    //   → 섹션 전체/배경이 translateY로 올라오면 아래 빈 공간 발생
-    '.product-intro-text',
-    '.steps-section-title',
-    '.step-item',
-    '.steps-showcase-card',
-    '.bento-section-header',
-    '.bento-item'
-  ];
+      // Product Page sections & components
+      // ※ product-hero-bg-text, product-hero-image-container, product-video-section 제외
+      //   → 섹션 전체/배경이 translateY로 올라오면 아래 빈 공간 발생
+      '.product-intro-text',
+      '.steps-section-title',
+      '.step-item',
+      '.steps-showcase-card',
+      '.bento-section-header',
+      '.bento-item'
+    ];
 
-  // Premium Scroll Reveal float up style (similar to gethapply.com)
-  const style = document.createElement('style');
-  style.textContent = `
-    .animate-up {
-      opacity: 0;
-      transform: translateY(60px);
-      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
-    }
-    .animate-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  `;
-  document.head.appendChild(style);
-
-  sectionsToAnimate.forEach(selector => {
-    const elements = document.querySelectorAll(selector);
-    elements.forEach((el, index) => {
-      el.classList.add('animate-up');
-      // Add slight delay for grid/timeline items to stagger their reveal
-      if (el.classList.contains('problem-card') || el.classList.contains('feature-card') || el.classList.contains('step-card') || el.classList.contains('how-step-card') || el.classList.contains('profile-card') || el.classList.contains('goal-card') || el.classList.contains('bento-item') || el.classList.contains('step-item')) {
-        el.style.transitionDelay = `${index * 0.15}s`;
+    // Premium Scroll Reveal float up style (similar to gethapply.com)
+    const style = document.createElement('style');
+    style.textContent = `
+      .animate-up {
+        opacity: 0;
+        transform: translateY(60px);
+        transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
       }
+      .animate-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    `;
+    document.head.appendChild(style);
+
+    sectionsToAnimate.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach((el, index) => {
+        el.classList.add('animate-up');
+        // Add slight delay for grid/timeline items to stagger their reveal
+        if (el.classList.contains('problem-card') || el.classList.contains('feature-card') || el.classList.contains('step-card') || el.classList.contains('how-step-card') || el.classList.contains('profile-card') || el.classList.contains('goal-card') || el.classList.contains('bento-item') || el.classList.contains('step-item')) {
+          el.style.transitionDelay = `${index * 0.15}s`;
+        }
+        observer.observe(el);
+      });
+    });
+
+    // Observe bounce animated elements
+    document.querySelectorAll('.animate-bounce-up').forEach(el => {
       observer.observe(el);
     });
-  });
+
+    // Trigger glitch texts
+    glitchSelectors.forEach(selector => {
+      document.querySelectorAll(selector).forEach(el => {
+        const label = el.textContent.trim().replace(/\s+/g, ' ');
+        if (label) {
+          el.dataset.oopsText = label;
+          el.classList.add('oops-glitch-text');
+        }
+      });
+    });
+
+    const sharedCtaTitles = document.querySelectorAll('.cta-floating-title, .product-cta-title');
+    sharedCtaTitles.forEach(title => title.classList.add('oops-cta-reveal'));
+
+    if (prefersReducedMotion) {
+      sharedCtaTitles.forEach(title => title.classList.add('oops-cta-reveal-in'));
+    } else {
+      const sharedCtaObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('oops-cta-reveal-in');
+          sharedCtaObserver.unobserve(entry.target);
+        });
+      }, {
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0.28
+      });
+
+      sharedCtaTitles.forEach(title => sharedCtaObserver.observe(title));
+    }
+
+    if (!prefersReducedMotion) {
+      const immersiveObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('oops-in-view');
+
+            if (entry.target.classList.contains('oops-glitch-text')) {
+              entry.target.classList.add('oops-glitch-play');
+              entry.target.addEventListener('animationend', () => {
+                entry.target.classList.remove('oops-glitch-play');
+              }, { once: true });
+            }
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0.12
+      });
+
+      document.querySelectorAll('.oops-kinetic-ready, .oops-kinetic-soft, .oops-glitch-text').forEach(el => immersiveObserver.observe(el));
+    } else {
+      document.querySelectorAll('.oops-kinetic-ready, .oops-kinetic-soft').forEach(el => el.classList.add('oops-in-view'));
+    }
+  }
+
+
 
   // Ticker content cloning for seamless infinite scroll
   const tickers = document.querySelectorAll('.ticker-track');
@@ -90,11 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const clone = child.cloneNode(true);
       track.appendChild(clone);
     });
-  });
-
-  // Observe bounce animated elements
-  document.querySelectorAll('.animate-bounce-up').forEach(el => {
-    observer.observe(el);
   });
 
   // Parallax scroll effect for sections with requestAnimationFrame
@@ -386,8 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '.steps-section-title',
     '.bento-section-title',
     '.hero-giant-text',
-    '.problems-giant-line',
-    '.footer-huge-logo'
+    '.problems-giant-line'
   ];
 
   const addClassToMatches = (selectors, className) => {
@@ -421,60 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
     card.tabIndex = 0;
   });
 
-  glitchSelectors.forEach(selector => {
-    document.querySelectorAll(selector).forEach(el => {
-      const label = el.textContent.trim().replace(/\s+/g, ' ');
-      if (label) {
-        el.dataset.oopsText = label;
-        el.classList.add('oops-glitch-text');
-      }
-    });
-  });
 
-  const sharedCtaTitles = document.querySelectorAll('.cta-floating-title, .product-cta-title');
-  sharedCtaTitles.forEach(title => title.classList.add('oops-cta-bounce'));
-
-  if (prefersReducedMotion) {
-    sharedCtaTitles.forEach(title => title.classList.add('oops-cta-bounce-in'));
-  } else {
-    const sharedCtaObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('oops-cta-bounce-in');
-        sharedCtaObserver.unobserve(entry.target);
-      });
-    }, {
-      rootMargin: '0px 0px -12% 0px',
-      threshold: 0.28
-    });
-
-    sharedCtaTitles.forEach(title => sharedCtaObserver.observe(title));
-  }
-
-  if (!prefersReducedMotion) {
-    const immersiveObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('oops-in-view');
-
-          if (entry.target.classList.contains('oops-glitch-text')) {
-            entry.target.classList.add('oops-glitch-play');
-            entry.target.addEventListener('animationend', () => {
-              entry.target.classList.remove('oops-glitch-play');
-            }, { once: true });
-          }
-        }
-      });
-    }, {
-      root: null,
-      rootMargin: '0px 0px -12% 0px',
-      threshold: 0.12
-    });
-
-    document.querySelectorAll('.oops-kinetic-ready, .oops-kinetic-soft, .oops-glitch-text').forEach(el => immersiveObserver.observe(el));
-  } else {
-    document.querySelectorAll('.oops-kinetic-ready, .oops-kinetic-soft').forEach(el => el.classList.add('oops-in-view'));
-  }
 
   const hoverDelegationSelectors = '.oops-media-kinetic, .oops-card-3d, .oops-magnetic-hover';
   document.addEventListener('pointerover', (event) => {
@@ -746,11 +752,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    const bentoCards = Array.from(document.querySelectorAll('.bento-item'));
-    bentoCards.forEach((card, index) => {
-      card.classList.add('oops-product-tilt');
-      card.dataset.productTiltIndex = String(index);
-    });
+    const bentoGrid = document.querySelector('.bento-grid');
+    if (bentoGrid) {
+      bentoGrid.classList.add('oops-product-tilt');
+    }
 
     const showcase = document.querySelector('.steps-showcase-card');
     const cinematicVideo = document.querySelector('.video-container-inner');
@@ -771,52 +776,58 @@ document.addEventListener('DOMContentLoaded', () => {
         };
       };
 
-      bentoCards.forEach((card, index) => {
+      if (bentoGrid) {
         let velocityX = 0;
         let velocityY = 0;
         let previousX = 0;
         let previousY = 0;
 
-        card.addEventListener('pointerenter', event => {
+        bentoGrid.addEventListener('pointerenter', event => {
           previousX = event.clientX;
           previousY = event.clientY;
-          card.classList.add('is-product-hover');
+          bentoGrid.classList.add('is-product-hover');
         });
 
-        card.addEventListener('pointermove', event => {
-          const point = pointerRatio(event, card);
+        bentoGrid.addEventListener('pointermove', event => {
+          const point = pointerRatio(event, bentoGrid);
           velocityX = velocityX * 0.58 + (event.clientX - previousX) * 0.42;
           velocityY = velocityY * 0.58 + (event.clientY - previousY) * 0.42;
           previousX = event.clientX;
           previousY = event.clientY;
 
-          const strength = [13, 17, 10, 14][index] || 13;
+          const strength = 12;
           const rx = (0.5 - point.y) * strength - clamp(velocityY * 0.045, -3.5, 3.5);
           const ry = (point.x - 0.5) * strength + clamp(velocityX * 0.045, -3.5, 3.5);
 
-          card.style.setProperty('--product-rx', `${rx.toFixed(2)}deg`);
-          card.style.setProperty('--product-ry', `${ry.toFixed(2)}deg`);
-          card.style.setProperty('--product-light-x', `${(point.x * 100).toFixed(1)}%`);
-          card.style.setProperty('--product-light-y', `${(point.y * 100).toFixed(1)}%`);
+          bentoGrid.style.setProperty('--product-rx', `${rx.toFixed(2)}deg`);
+          bentoGrid.style.setProperty('--product-ry', `${ry.toFixed(2)}deg`);
+          bentoGrid.style.setProperty('--product-light-x', `${(point.x * 100).toFixed(1)}%`);
+          bentoGrid.style.setProperty('--product-light-y', `${(point.y * 100).toFixed(1)}%`);
 
-          if (index === 1) {
-            card.style.setProperty('--product-icon-x', `${((point.x - 0.5) * 28).toFixed(1)}px`);
-            card.style.setProperty('--product-icon-y', `${((point.y - 0.5) * 22).toFixed(1)}px`);
-            card.style.setProperty('--product-icon-spin', `${(velocityX * 0.65).toFixed(1)}deg`);
+          const orangeCard = bentoGrid.querySelector('.bento-card-orange');
+          if (orangeCard) {
+            const pointOrange = pointerRatio(event, orangeCard);
+            orangeCard.style.setProperty('--product-icon-x', `${((pointOrange.x - 0.5) * 28).toFixed(1)}px`);
+            orangeCard.style.setProperty('--product-icon-y', `${((pointOrange.y - 0.5) * 22).toFixed(1)}px`);
+            orangeCard.style.setProperty('--product-icon-spin', `${(velocityX * 0.65).toFixed(1)}deg`);
           }
         });
 
-        card.addEventListener('pointerleave', () => {
-          card.classList.remove('is-product-hover');
-          card.style.setProperty('--product-rx', '0deg');
-          card.style.setProperty('--product-ry', '0deg');
-          card.style.setProperty('--product-light-x', '50%');
-          card.style.setProperty('--product-light-y', '50%');
-          card.style.setProperty('--product-icon-x', '0px');
-          card.style.setProperty('--product-icon-y', '0px');
-          card.style.setProperty('--product-icon-spin', '0deg');
+        bentoGrid.addEventListener('pointerleave', () => {
+          bentoGrid.classList.remove('is-product-hover');
+          bentoGrid.style.setProperty('--product-rx', '0deg');
+          bentoGrid.style.setProperty('--product-ry', '0deg');
+          bentoGrid.style.setProperty('--product-light-x', '50%');
+          bentoGrid.style.setProperty('--product-light-y', '50%');
+
+          const orangeCard = bentoGrid.querySelector('.bento-card-orange');
+          if (orangeCard) {
+            orangeCard.style.setProperty('--product-icon-x', '0px');
+            orangeCard.style.setProperty('--product-icon-y', '0px');
+            orangeCard.style.setProperty('--product-icon-spin', '0deg');
+          }
         });
-      });
+      }
 
       const addDepthPan = (element, xProperty, yProperty, amount) => {
         if (!element) return;
@@ -1451,6 +1462,36 @@ document.addEventListener('DOMContentLoaded', () => {
       featureGlitchSection.style.setProperty('--feature-glitch-shift-x-reverse', '0px');
       featureGlitchSection.style.setProperty('--feature-glitch-shift-y-reverse', '0px');
     });
+  }
+
+  // Immersive Intro Screen Sequence (Bouncing Letters)
+  const introScreen = document.getElementById('oops-intro-screen');
+  if (introScreen) {
+    if (sessionStorage.getItem('oopsIntroRun') === 'true') {
+      introScreen.remove();
+      startScrollAnimations();
+    } else {
+      document.body.style.overflow = 'hidden';
+      document.body.classList.add('intro-active');
+      
+      // Keep the bouncing letters active for 2.2 seconds (approx 2 animation cycles)
+      setTimeout(() => {
+        introScreen.classList.add('fade-out');
+        document.body.style.overflow = '';
+        document.body.classList.remove('intro-active');
+        sessionStorage.setItem('oopsIntroRun', 'true');
+        
+        // Start scroll animations as the intro screen fades out
+        startScrollAnimations();
+        
+        setTimeout(() => {
+          introScreen.remove();
+        }, 800);
+      }, 2200);
+    }
+  } else {
+    // If no intro screen on the page (other pages), start animations immediately
+    startScrollAnimations();
   }
 
 });
