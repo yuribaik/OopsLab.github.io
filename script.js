@@ -363,7 +363,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.note-icon-circle',
     '.product-hero-floating-img',
     '.video-container-inner',
-    '.steps-showcase-card',
     '.bento-item',
     '.bento-card-icon-wrapper',
     '.product-preorder-section'
@@ -374,7 +373,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.note-icon-circle',
     '.feature-card',
     '.bento-item',
-    '.steps-showcase-card',
     '.product-cta-buttons button',
     '.cta-floating-buttons button',
     '.btn'
@@ -408,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
   addClassToMatches(softRevealSelectors, 'oops-kinetic-soft');
   addClassToMatches(mediaSelectors, 'oops-media-kinetic');
   addClassToMatches(cardSelectors, 'oops-magnetic-hover');
-  document.querySelectorAll('.bento-item, .steps-showcase-card, .feature-fireplace-card').forEach(el => {
+  document.querySelectorAll('.bento-item, .feature-fireplace-card').forEach(el => {
     if (!el.style.getPropertyValue('--oops-base-transform')) {
       const baseTransform = getComputedStyle(el).transform;
       el.style.setProperty('--oops-base-transform', baseTransform === 'none' ? 'none' : baseTransform);
@@ -759,7 +757,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const productLabCard = document.querySelector('.vision-lab-card');
     const productPreorder = document.querySelector('.product-preorder-section');
 
-    if (showcase) showcase.classList.add('oops-product-elastic');
     if (cinematicVideo) cinematicVideo.classList.add('oops-product-cinematic');
     if (productLabCard) productLabCard.classList.add('oops-product-depth');
     if (productPreorder) productPreorder.classList.add('oops-product-drift');
@@ -821,23 +818,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
 
-      if (showcase) {
-        showcase.addEventListener('pointermove', event => {
-          const point = pointerRatio(event, showcase);
-          showcase.style.setProperty('--showcase-rx', `${((0.5 - point.y) * 8).toFixed(2)}deg`);
-          showcase.style.setProperty('--showcase-ry', `${((point.x - 0.5) * 10).toFixed(2)}deg`);
-          showcase.style.setProperty('--showcase-x', `${((point.x - 0.5) * 8).toFixed(1)}px`);
-          showcase.style.setProperty('--showcase-y', `${((point.y - 0.5) * 8).toFixed(1)}px`);
-          showcase.style.setProperty('--showcase-image-x', `${((0.5 - point.x) * 18).toFixed(1)}px`);
-          showcase.style.setProperty('--showcase-image-y', `${((0.5 - point.y) * 18).toFixed(1)}px`);
-        });
-
-        showcase.addEventListener('pointerleave', () => {
-          ['--showcase-rx', '--showcase-ry'].forEach(name => showcase.style.setProperty(name, '0deg'));
-          ['--showcase-x', '--showcase-y', '--showcase-image-x', '--showcase-image-y'].forEach(name => showcase.style.setProperty(name, '0px'));
-        });
-      }
-
       const addDepthPan = (element, xProperty, yProperty, amount) => {
         if (!element) return;
         element.addEventListener('pointermove', event => {
@@ -856,6 +836,60 @@ document.addEventListener('DOMContentLoaded', () => {
       addDepthPan(cinematicVideo, '--video-pan-x', '--video-pan-y', 18);
       addDepthPan(productLabCard, '--lab-pan-x', '--lab-pan-y', 24);
       addDepthPan(productPreorder, '--preorder-pan-x', '--preorder-pan-y', 20);
+    }
+
+    const stepsSection = document.querySelector('.product-steps-section');
+    const showcaseImages = showcase ? Array.from(showcase.querySelectorAll('.steps-showcase-img')) : [];
+    const showcaseChannel = showcase?.querySelector('.steps-retro-channel');
+    if (stepsSection && showcase && showcaseImages.length === 3) {
+      let activeShowcaseIndex = 0;
+      let showcaseScrollFrame = null;
+      let showcaseSwitchTimer = null;
+
+      const setShowcaseImage = nextIndex => {
+        if (nextIndex === activeShowcaseIndex) return;
+        activeShowcaseIndex = nextIndex;
+        showcaseImages.forEach((image, index) => {
+          image.classList.toggle('is-showcase-active', index === activeShowcaseIndex);
+        });
+
+        if (showcaseChannel) {
+          showcaseChannel.textContent = `CH 0${activeShowcaseIndex + 1}`;
+        }
+
+        if (!prefersReducedMotion) {
+          showcase.classList.remove('is-retro-switching');
+          void showcase.offsetWidth;
+          showcase.classList.add('is-retro-switching');
+          clearTimeout(showcaseSwitchTimer);
+          showcaseSwitchTimer = setTimeout(() => {
+            showcase.classList.remove('is-retro-switching');
+          }, 500);
+        }
+      };
+
+      const updateShowcaseFromScroll = () => {
+        const rect = stepsSection.getBoundingClientRect();
+        const isPinnedLayout = window.innerWidth > 1024;
+        const travel = isPinnedLayout
+          ? Math.max(1, rect.height - window.innerHeight)
+          : window.innerHeight + rect.height;
+        const progress = isPinnedLayout
+          ? Math.max(0, Math.min(1, -rect.top / travel))
+          : Math.max(0, Math.min(1, (window.innerHeight - rect.top) / travel));
+        const nextIndex = progress < 0.3 ? 0 : (progress < 0.62 ? 1 : 2);
+        setShowcaseImage(nextIndex);
+        showcaseScrollFrame = null;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (!showcaseScrollFrame) {
+          showcaseScrollFrame = requestAnimationFrame(updateShowcaseFromScroll);
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', updateShowcaseFromScroll);
+      updateShowcaseFromScroll();
     }
 
     const productHero = document.querySelector('.product-hero');

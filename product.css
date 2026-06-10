@@ -342,6 +342,26 @@
   padding: 0 32px;
 }
 
+@media (min-width: 1025px) {
+  .product-steps-section {
+    height: 300vh;
+    align-items: flex-start;
+  }
+
+  .product-steps-container {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .steps-showcase-card {
+    width: auto;
+    height: min(880px, calc(100vh - 120px));
+    max-width: 100%;
+  }
+}
+
 .product-steps-container {
   display: grid;
   grid-template-columns: 402px 1fr;
@@ -359,6 +379,11 @@
   line-height: 0.95;
   margin-bottom: 50px;
   text-transform: uppercase;
+}
+
+.steps-section-title span {
+  display: block;
+  white-space: nowrap;
 }
 
 .steps-list {
@@ -410,13 +435,87 @@
   box-shadow: 10px 10px 0px var(--black);
   overflow: hidden;
   background-color: var(--white);
+  position: relative;
+  isolation: isolate;
 }
 
 .steps-showcase-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  z-index: 1;
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transform: scale(1.06);
+  transition:
+    opacity 0.16s steps(2, end),
+    clip-path 0.52s steps(7, end),
+    transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.steps-showcase-img.is-showcase-active {
+  z-index: 2;
+  opacity: 1;
+  clip-path: inset(0);
+  transform: scale(1);
+}
+
+.steps-retro-scan {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(34, 34, 34, 0.045) 0 1px, transparent 1px 6px),
+    linear-gradient(to bottom, transparent 0, rgba(255, 90, 31, 0.26) 48%, rgba(255, 236, 214, 0.46) 50%, transparent 53%);
+  background-size: 100% 100%, 100% 34%;
+  background-position: center, center -35%;
+}
+
+.steps-retro-channel {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  z-index: 6;
+  padding: 6px 10px;
+  border: 2px solid var(--black);
+  background: var(--peach);
+  color: var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+.steps-showcase-card.is-retro-switching .steps-retro-scan {
+  animation: stepsRetroScan 0.46s steps(5, end);
+}
+
+.steps-showcase-card.is-retro-switching .is-showcase-active {
+  animation: stepsRetroImageLock 0.46s steps(4, end);
+}
+
+@keyframes stepsRetroScan {
+  0% { opacity: 0; background-position: center, center -35%; filter: hue-rotate(0deg); }
+  18% { opacity: 0.48; }
+  48% { opacity: 0.36; background-position: center, center 48%; filter: hue-rotate(12deg) saturate(1.18); }
+  78% { opacity: 0.2; background-position: center, center 118%; }
+  100% { opacity: 0; background-position: center, center 140%; filter: none; }
+}
+
+@keyframes stepsRetroImageLock {
+  0% { translate: -4px 0; filter: saturate(1.2) contrast(1.08) hue-rotate(-5deg); }
+  24% { translate: 3px 0; clip-path: inset(0 0 20% 0); }
+  44% { translate: -2px 0; clip-path: inset(15% 0 5% 0); filter: saturate(1.12) contrast(1.06) hue-rotate(5deg); }
+  68% { translate: 1px 0; clip-path: inset(4% 0 9% 0); }
+  100% { translate: 0 0; clip-path: inset(0); filter: none; }
 }
 
 /* Bento Grid Section */
@@ -1425,25 +1524,6 @@
   transform: translateZ(20px) scale(1.025);
 }
 
-.product-page .steps-showcase-card.oops-product-elastic {
-  transform:
-    perspective(1050px)
-    rotateX(var(--showcase-rx, 0deg))
-    rotateY(var(--showcase-ry, 0deg))
-    translate3d(var(--showcase-x, 0px), var(--showcase-y, 0px), 0);
-  transform-style: preserve-3d;
-  transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-
-.product-page .steps-showcase-card.oops-product-elastic .steps-showcase-img {
-  transform:
-    translate3d(var(--showcase-image-x, 0px), var(--showcase-image-y, 0px), 36px)
-    scale(1.045);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-
 .product-page .video-container-inner.oops-product-cinematic #product-video {
   transform:
     translate3d(var(--video-pan-x, 0px), var(--video-pan-y, 0px), 0)
@@ -1484,8 +1564,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .product-page .bento-item.oops-product-tilt,
-  .product-page .steps-showcase-card.oops-product-elastic,
-  .product-page .steps-showcase-card.oops-product-elastic .steps-showcase-img,
   .product-page .video-container-inner.oops-product-cinematic #product-video,
   .product-page .vision-lab-card.oops-product-depth .vision-bg-img,
   .product-page .product-preorder-section.oops-product-drift .preorder-bg-img {
